@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/ForQuest/TaskCRM/issues"
   },
-  "homepage": "https://github.com/ForQuest/TaskCRM"
+  "homepage": "https://github.com/ForQuest/TaskCRM",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.4.4"
+  }
 }
