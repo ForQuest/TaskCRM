@@ -2,8 +2,9 @@
   "name": "TaskCRM_Back-end",
   "version": "0.0.1",
   "description": "Back-end for TaskCRM",
-  "main": "/js/app.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +21,22 @@
   },
   "homepage": "https://github.com/ForQuest/TaskCRM",
   "dependencies": {
+    "body-parser": "^1.15.0",
+    "bootable": "~0.2.0",
+    "bootable-environment": "~0.2.0",
+    "cookie-parser": "^1.4.1",
+    "crypto": "0.0.3",
+    "errorhandler": "^1.4.3",
     "express": "^4.13.4",
-    "mongoose": "^4.4.4"
+    "express-session": "^1.13.0",
+    "method-override": "^2.3.5",
+    "mongoose": "^4.4.4",
+    "multer": "^1.1.0",
+    "nconf": "^0.8.4",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "require-tree": "^1.1.1",
+    "serve-static": "^1.10.2",
+    "winston": "^2.2.0"
   }
 }

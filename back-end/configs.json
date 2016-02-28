@@ -1,0 +1,9 @@
+{
+	"express": {
+		"port": 8000
+	},
+
+	"mongoose":{
+		"db": "mongodb://localhost/TaskCRM"
+	}
+}
