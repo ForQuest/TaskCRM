@@ -28,21 +28,29 @@ export function signUpSuccess(message) {
 export function passwordLogin(data) {
   return {
     type: types.PASSWORD_LOGIN,
-    promise: makeRequest('post', '/login', {
-      grant_type: 'password',
-      ...data
-    })
+    request: {
+      method: 'post',
+      url: '/login',
+      data: {
+        grant_type: 'password',
+        ...data
+      }
+    }
   };
 }
 
-export function refreshLogin(refresh_token, lastEvent) {
+export function refreshLogin(refresh_token, lastAction) {
   return {
     type: types.REFRESH_LOGIN,
-    promise: makeRequest('post', '/login', {
-      grant_type: 'refresh_token',
-      refresh_token: refresh_token
-    }),
-    lastEvent
+    request: {
+      method: 'post',
+      url: '/login',
+      data: {
+        grant_type: 'refresh_token',
+        refresh_token: refresh_token
+      }
+    },
+    lastAction
   };
 }
 

@@ -12,7 +12,10 @@ polyfill();
 export function fetchTopics() {
   return {
     type: types.GET_TOPICS,
-    promise: makeRequest('get', '/api/topic/')
+    request: {
+      method: 'get',
+      url: '/api/topic/',
+    }
   };
 }
 
@@ -26,14 +29,22 @@ export function createTopic(text) {
   return {
     data,
     type: types.CREATE_TOPIC,
-    promise: makeRequest('post', '/api/topic/'+md5.hash(text), data)
+    request: {
+      method: 'post',
+      url: '/api/topic/'+md5.hash(text),
+      data
+    }
   }
 }
 
 export function updateTopic(method, dispatch_data = {}, success_type, request_data) {
   return {
     type: types.UPDATE_TOPIC,
-    promise: makeRequest(method, '/api/topic/'+dispatch_data.id, request_data),
+    request: {
+      method,
+      url: '/api/topic/'+dispatch_data.id,
+      data: request_data
+    },
     success: success_type,
     ...dispatch_data
   }

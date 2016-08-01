@@ -47,9 +47,8 @@ export default function promiseMiddleware({ getState, dispatch }) {
           !refresh_token
             ?next({ ...rest, statusText, type: FAILURE })
             :null;
-
           dispatch({ type: types.ACCESS_TOKEN_INVALID });
-          dispatch(refreshLogin(refresh_token, { ...action }));
+          dispatch(refreshLogin(refresh_token));
         } else {
           const { statusText } = response;
           next({ ...rest, statusText, type: FAILURE });

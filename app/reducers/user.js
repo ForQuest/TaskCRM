@@ -11,6 +11,7 @@ const message = ( state = '', action ) => {
     case types.SIGNUP_SUCCESS_USER:
       return '';
     case types.PASSWORD_LOGIN_FAILURE:
+    case types.REFRESH_LOGIN_FAILURE:
     case types.SIGNUP_ERROR_USER:
       return action.message?action.message:'';
     default:
@@ -30,6 +31,7 @@ const isWaiting = ( state = false, action ) => {
     case types.USER_LOGOUT_SUCCESS:
     case types.USER_LOGOUT_FAILURE:
     case types.REFRESH_LOGIN_SUCCESS:
+    case types.REFRESH_LOGIN_FAILURE:
     case types.SIGNUP_SUCCESS_USER:
     case types.SIGNUP_ERROR_USER:
       return false;
@@ -46,9 +48,9 @@ const authenticated = ( state = false, action ) => {
     case types.REFRESH_LOGIN_SUCCESS:
       return true;
     case types.PASSWORD_LOGIN_FAILURE:
+    case types.REFRESH_LOGIN_FAILURE:
     case types.SIGNUP_ERROR_USER:
     case types.USER_LOGOUT_SUCCESS:
-    case types.REFRESH_LOGIN_FAILURE:
       return false;
     default:
       return state;
@@ -63,6 +65,7 @@ const access_token = ( state = '', action ) => {
     case types.REFRESH_LOGIN_SUCCESS:
       return action.access_token;
     case types.PASSWORD_LOGIN_FAILURE:
+    case types.REFRESH_LOGIN_FAILURE:
     case types.SIGNUP_ERROR_USER:
     case types.USER_LOGOUT_SUCCESS:
     case types.ACCESS_TOKEN_INVALID:
@@ -80,6 +83,7 @@ const refresh_token = ( state = '', action ) => {
     case types.REFRESH_LOGIN_SUCCESS:
       return action.refresh_token;
     case types.PASSWORD_LOGIN_FAILURE:
+    case types.REFRESH_LOGIN_FAILURE:
     case types.USER_LOGOUT_SUCCESS:
     case types.SIGNUP_ERROR_USER:
       return '';
