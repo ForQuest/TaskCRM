@@ -3,18 +3,23 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import createRoutes from 'routes';
+import routes from 'routes';
 import * as types from 'types';
 import configureStore from 'store/configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
+import { loadState, saveState } from 'store/localStorage';
 
 // Grab the state from a global injected into
 // server-generated HTML
-const initialState = window.__INITIAL_STATE__;
+const initialState = loadState();
 
 const store = configureStore(initialState, browserHistory);
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
+
 const history = syncHistoryWithStore(browserHistory, store);
-const routes = createRoutes(store);
 
 /**
  * Callback function handling frontend route changes.
@@ -30,12 +35,11 @@ function onUpdate() {
     window.__INITIAL_STATE__ = null;
     return;
   }
-
   store.dispatch({ type: types.CREATE_REQUEST });
   preRenderMiddleware(this.state)
-  .then(data => {
-    return store.dispatch({ type: types.REQUEST_SUCCESS, data });
-  });
+    .then(data => {
+      return store.dispatch({ type: types.REQUEST_SUCCESS, data });
+    });
 }
 
 

@@ -34,29 +34,58 @@ export function add(req, res) {
  */
 export function update(req, res) {
   const query = { id: req.params.id };
+  const type = req.body.type;
   const isIncrement = req.body.isIncrement;
   const isFull = req.body.isFull;
+  const startDate = req.body.startDate;
+  const stopDate = req.body.stopDate;
   const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
   const data = _.omit(req.body, omitKeys);
 
-  if (isFull) {
-    Topic.findOneAndUpdate(query, data, (err) => {
-      if (err) {
-        console.log('Error on save!');
-        return res.status(500).send('We failed to save for some reason');
-      }
+  switch (type) {
+    case 'FULL': 
+      Topic.findOneAndUpdate(query, data, (err) => {
+        if (err) {
+          console.log('Error on save topic ID:'+req.params.id);
+          return res.status(500).send('We failed to save for some reason');
+        }
 
-      return res.status(200).send('Updated successfully');
-    });
-  } else {
-    Topic.findOneAndUpdate(query, { $inc: { count: isIncrement ? 1 : -1 } }, (err) => {
-      if (err) {
-        console.log('Error on save!');
-        return res.status(500).send('We failed to save for some reason');
-      }
+        return res.status(200).send('Updated successfully');
+      });
+    break;
+    case 'INCREMENT':
+      Topic.findOneAndUpdate(query, { $inc: { count: isIncrement ? 1 : -1 } }, (err) => {
+        if (err) {
+          console.log('Error on save topic ID:'+req.params.id);
+          return res.status(500).send('We failed to save for some reason');
+        }
 
-      return res.status(200).send('Updated successfully');
-    });
+        return res.status(200).send('Updated successfully');
+      });
+    break;
+    case 'START_DATE':
+      Topic.findOneAndUpdate(query, {stopDate: undefined, startDate: startDate } , (err) => {
+        if (err) {
+          console.log('Error on save topic ID:'+req.params.id);
+          return res.status(500).send('We failed to save for some reason');
+        }
+
+        return res.status(200).send('Updated successfully');
+      });
+    break;
+    case 'STOP_DATE':
+      Topic.findOneAndUpdate(query, { stopDate: stopDate }, (err) => {
+        if (err) {
+          console.log('Error on save topic ID:'+req.params.id);
+          return res.status(500).send('We failed to save for some reason');
+        }
+
+        return res.status(200).send('Updated successfully');
+      });
+    break;
+    default:
+      return res.status(500);
+    break;
   }
 }
 
@@ -67,7 +96,7 @@ export function remove(req, res) {
   const query = { id: req.params.id };
   Topic.findOneAndRemove(query, (err) => {
     if (err) {
-      console.log('Error on delete');
+      console.log('Error on delete topic ID:'+req.params.id);
       return res.status(500).send('We failed to delete for some reason');
     }
 

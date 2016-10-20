@@ -11,7 +11,7 @@ const topicsController = controllers && controllers.topics;
 export default (app) => {
   // user routes
   if (usersController) {
-    app.post('/login', usersController.login);
+    app.post('/login', controllers.oauth);
     app.post('/signup', usersController.signUp);
     app.post('/logout', usersController.logout);
   } else {
@@ -45,10 +45,12 @@ export default (app) => {
 
   // topic routes
   if (topicsController) {
-    app.get('/topic', topicsController.all);
-    app.post('/topic/:id', topicsController.add);
-    app.put('/topic/:id', topicsController.update);
-    app.delete('/topic/:id', topicsController.remove);
+    app.all('/api/*', passport.authenticate('bearer', { session: false }));
+
+    app.get('/api/topic', topicsController.all);
+    app.post('/api/topic/:id', topicsController.add);
+    app.put('/api/topic/:id', topicsController.update);
+    app.delete('/api/topic/:id', topicsController.remove);
   } else {
     console.warn(unsupportedMessage('topics routes'));
   }

@@ -13,19 +13,9 @@ import mongoose from 'mongoose';
  */
 
 const UserSchema = new mongoose.Schema({
-  email: { type: String, unique: true, lowercase: true },
+  username: { type: String, unique: true, lowercase: true },
   password: String,
-  tokens: Array,
-  profile: {
-    name: { type: String, default: '' },
-    gender: { type: String, default: '' },
-    location: { type: String, default: '' },
-    website: { type: String, default: '' },
-    picture: { type: String, default: '' }
-  },
-  resetPasswordToken: String,
-  resetPasswordExpires: Date,
-  google: {}
+  group: { type: Number, required: true }
 });
 
 function encryptPassword(next) {
@@ -45,6 +35,9 @@ function encryptPassword(next) {
  * Password hash middleware.
  */
 UserSchema.pre('save', encryptPassword);
+
+UserSchema.virtual('userId')
+          .get(function(){ return this.id});
 
 /*
  Defining our own custom document instance method

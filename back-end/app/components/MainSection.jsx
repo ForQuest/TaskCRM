@@ -5,7 +5,7 @@ import styles from 'css/components/main-section';
 
 const cx = classNames.bind(styles);
 
-const MainSection = ({ topics, onIncrement, onDecrement, onDestroy }) => {
+const MainSection = ({ topics, onIncrement, onDecrement, onDestroy, onPauseTopic }) => {
   const topicItems = topics.map((topic, key) => {
     return (
       <TopicItem
@@ -15,7 +15,9 @@ const MainSection = ({ topics, onIncrement, onDecrement, onDestroy }) => {
         text={topic.text}
         incrementCount={onIncrement}
         decrementCount={onDecrement}
-        destroyTopic={onDestroy} />);
+        destroyTopic={onDestroy}
+        pauseTopic={onPauseTopic}
+        pauseToggle={topic.stopDate?true:false} />);
   });
 
   return (
@@ -30,7 +32,8 @@ MainSection.propTypes = {
   topics: PropTypes.array.isRequired,
   onIncrement: PropTypes.func.isRequired,
   onDecrement: PropTypes.func.isRequired,
-  onDestroy: PropTypes.func.isRequired
+  onDestroy: PropTypes.func.isRequired,
+  onPauseTopic: PropTypes.func.isRequired
 };
 
 export default MainSection;

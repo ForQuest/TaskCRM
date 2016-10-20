@@ -2,7 +2,9 @@
 import { polyfill } from 'es6-promise';
 import request from 'axios';
 import md5 from 'spark-md5';
+import * as lib from 'lib';
 import * as types from 'types';
+import { makeRequest, getMessage} from 'services';
 
 polyfill();
 
@@ -17,9 +19,6 @@ polyfill();
  * @param String endpoint
  * @return Promise
  */
-export function makeTopicRequest(method, id, data, api = '/topic') {
-  return request[method](api + (id ? ('/' + id) : ''), data);
-}
 
 export function increment(id) {
   return { type: types.INCREMENT_COUNT, id };
@@ -31,6 +30,22 @@ export function decrement(id) {
 
 export function destroy(id) {
   return { type: types.DESTROY_TOPIC, id };
+}
+
+export function start(id, startDate) {
+  return {
+    type: types.START_TOPIC,
+    id,
+    startDate
+  };
+}
+
+export function stop(id, stopDate) {
+  return {
+    type: types.STOP_TOPIC,
+    id,
+    stopDate
+  };
 }
 
 
@@ -50,7 +65,8 @@ export function createTopicRequest(data) {
     type: types.CREATE_TOPIC_REQUEST,
     id: data.id,
     count: data.count,
-    text: data.text
+    text: data.text,
+    startDate: data.date
   };
 }
 
@@ -60,11 +76,10 @@ export function createTopicSuccess() {
   };
 }
 
-export function createTopicFailure(data) {
+export function createTopicFailure(message) {
   return {
-    type: types.CREATE_TOPIC_FAILURE,
-    id: data.id,
-    error: data.error
+    type: types.CREATE_TOPIC_ERROR,
+    message
   };
 }
 
@@ -87,10 +102,12 @@ export function createTopic(text) {
     // Redux thunk's middleware receives the store methods `dispatch`
     // and `getState` as parameters
     const { topic } = getState();
+    const d = new Date();
     const data = {
       count: 1,
       id,
-      text
+      text,
+      startDate: d.toFormatString()
     };
 
     // Conditional dispatch
@@ -103,20 +120,20 @@ export function createTopic(text) {
     }
 
     // First dispatch an optimistic update
-    dispatch(createTopicRequest(data));
-
-    return makeTopicRequest('post', id, data)
+    
+    return makeRequest('post', '/api/topic/'+id, data)
       .then(res => {
         if (res.status === 200) {
           // We can actually dispatch a CREATE_TOPIC_SUCCESS
           // on success, but I've opted to leave that out
           // since we already did an optimistic update
           // We could return res.json();
+          dispatch(createTopicRequest(data));
           return dispatch(createTopicSuccess());
         }
       })
-      .catch(() => {
-        return dispatch(createTopicFailure({ id, error: 'Oops! Something went wrong and we couldn\'t create your topic'}));
+      .catch(err => {
+        return dispatch(createTopicFailure(getMessage(err)));
       });
   };
 }
@@ -125,38 +142,68 @@ export function createTopic(text) {
 export function fetchTopics() {
   return {
     type: types.GET_TOPICS,
-    promise: makeTopicRequest('get')
+    promise: makeRequest('get', '/api/topic/')
   };
 }
 
-
 export function incrementCount(id) {
   return dispatch => {
-    return makeTopicRequest('put', id, {
-        isFull: false,
+    return makeRequest('put', '/api/topic/'+id, {
+        type: 'INCREMENT',
         isIncrement: true
       })
       .then(() => dispatch(increment(id)))
-      .catch(() => dispatch(createTopicFailure({id, error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
+      .catch(err => dispatch(createTopicFailure(getMessage(err))));
   };
 }
 
 export function decrementCount(id) {
   return dispatch => {
-    return makeTopicRequest('put', id, {
-        isFull: false,
+    return makeRequest('put', '/api/topic/'+id, {
+        type: 'INCREMENT',
         isIncrement: false
       })
       .then(() => dispatch(decrement(id)))
-      .catch(() => dispatch(createTopicFailure({id, error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
+      .catch(err => dispatch(createTopicFailure(getMessage(err))));
   };
 }
 
 export function destroyTopic(id) {
   return dispatch => {
-    return makeTopicRequest('delete', id)
+    return makeRequest('delete', '/api/topic/'+id)
       .then(() => dispatch(destroy(id)))
-      .catch(() => dispatch(createTopicFailure({id,
-        error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
+      .catch(err => dispatch(createTopicFailure(getMessage(err))));
+  };
+}
+
+export function pauseTopic(id) {
+  return (dispatch, getState) => {
+    const { topic } = getState();
+
+    if (topic.topics.filter(topicItem => (topicItem.id == id && ( topicItem.stopDate === undefined || topicItem.stopDate == null ))).length > 0) {
+      let d = new Date();
+      d = d.toFormatString();
+      return makeRequest('put', '/api/topic/'+id,  {
+        type: 'STOP_DATE',
+        stopDate: d
+      })
+      .then(() => dispatch(stop(id, d)))
+      .catch(err => dispatch(createTopicFailure(getMessage(err))));
+
+    } else {
+      const t = topic.topics.filter(topicItem => topicItem.id == id)[0];
+      let startDate = Date.parse(t.startDate);
+      let stopDate = Date.parse(t.stopDate);
+      let d = new Date();
+      d = new Date(d - (stopDate - startDate));
+      d = d.toFormatString();
+      return makeRequest('put', '/api/topic/'+id,  {
+        type: 'START_DATE',
+        startDate: d
+      })
+      .then(() => dispatch(start(id, d)))
+      .catch(err => dispatch(createTopicFailure(getMessage(err))));
+    }
+    
   };
 }

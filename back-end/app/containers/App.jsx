@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Navigation from 'containers/Navigation';
 import Message from 'containers/Message';
+import LoginOrRegister from 'containers/LoginOrRegister';
 import classNames from 'classnames/bind';
 import styles from 'css/main';
 
@@ -16,18 +18,33 @@ const cx = classNames.bind(styles);
  * A better explanation of react-router is available here:
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  */
-const App = ({children}) => {
-  return (
-    <div className={cx('app')}>
-      <Navigation />
-      <Message />
-        {children}
-    </div>
-  );
+const App = ({auth, children}) => {
+  if(auth){
+    return (
+      <div className={cx('app')}>
+        <Navigation />
+        <Message />
+          {children}
+      </div>
+    );
+  } else {
+    return (
+      <div className={cx('app')}>
+        <LoginOrRegister />
+      </div>
+    );
+  }
 };
 
 App.propTypes = {
+  auth: PropTypes.bool,
   children: PropTypes.object
 };
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    auth: state.user.authenticated
+  };
+}
+
+export default connect(mapStateToProps)(App);

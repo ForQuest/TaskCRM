@@ -17,6 +17,16 @@ const isFetching = ( state = false, action ) => {
   }
 };
 
+
+const tick = ( state = false, action ) => {
+  switch (action.type) {
+    case types.TICK_EVENT:
+      return !state;   
+    default:
+      return state;
+  }
+};
+
 // Combine reducers with routeReducer which keeps track of
 // router state
 const rootReducer = combineReducers({
@@ -24,7 +34,8 @@ const rootReducer = combineReducers({
   topic,
   user,
   message,
-  routing
+  routing,
+  tick
 });
 
 export default rootReducer;

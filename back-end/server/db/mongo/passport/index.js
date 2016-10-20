@@ -1,11 +1,15 @@
-import deserializeUser from './deserializeUser';
-import google from './google';
+// import deserializeUser from './deserializeUser';
+// import google from './google';
 import local from './local';
+import bearer from './bearer';
+import client_password from './client_password';
+import basic_http from './basic_http';
 
-export { deserializeUser, google, local };
+export { local, bearer };
 
 export default {
-  deserializeUser,
-  google,
   local,
+  bearer,
+  client_password,
+  basic_http
 };

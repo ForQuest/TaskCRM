@@ -1,6 +1,9 @@
 /* Initializing passport.js */
 import passport from 'passport';
 import local from './passport/local';
+import bearer from './passport/bearer';
+import basic_http from './passport/basic_http';
+import client_password from './passport/client_password';
 import google from './passport/google';
 import { passport as dbPassport } from '../db';
 import unsupportedMessage from '../db/unsupportedMessage';
@@ -14,17 +17,10 @@ export default () => {
   // serializing, and querying the user record by ID from the database when
   // deserializing.
 
-  if (dbPassport && dbPassport.deserializeUser) {
-    passport.serializeUser((user, done) => {
-      done(null, user.id);
-    });
-
-    passport.deserializeUser(dbPassport.deserializeUser);
-  } else {
-    console.warn(unsupportedMessage('(de)serialize User'));
-  }
-
   // use the following strategies
   local(passport);
-  google(passport);
+  bearer(passport);
+  basic_http(passport);
+  client_password(passport);
+  // google(passport);
 };

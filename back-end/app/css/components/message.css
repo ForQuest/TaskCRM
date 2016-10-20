@@ -19,3 +19,8 @@
   background-color: var(--colorSalem);
   color: var(--colorWhite);
 }
+
+.error {
+  background-color: #e20000;
+  color: var(--colorWhite);
+}

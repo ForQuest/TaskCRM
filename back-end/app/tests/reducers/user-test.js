@@ -4,7 +4,6 @@ import * as types from 'types';
 
 describe('Users reducer', () => {
   const initialState = {
-    isLogin: true,
     message: '',
     isWaiting: false,
     authenticated: false
@@ -98,8 +97,7 @@ describe('Users reducer', () => {
       reducer(undefined, {type: types.LOGOUT_ERROR_USER})
     ).toEqual(Object.assign({}, initialState, {
       isWaiting: false,
-      authenticated: true,
-      isLogin: true
+      authenticated: true
     }));
   });
 });

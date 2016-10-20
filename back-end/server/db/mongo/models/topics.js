@@ -8,7 +8,8 @@ const TopicSchema = new mongoose.Schema({
   id: String,
   text: String,
   count: { type: Number, min: 0 },
-  date: { type: Date, default: Date.now }
+  startDate: { type: Date, default: Date.now() },
+  stopDate: { type: Date }
 });
 
 // Compiles the schema into a model, opening (or creating, if

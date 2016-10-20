@@ -11,17 +11,14 @@ const cx = classNames.bind(styles);
 const Navigation = ({ user, logOut }) => {
     return (
       <nav className={cx('navigation')} role="navigation">
-        <Link to="/"
-          className={cx('item', 'logo')}
-          activeClassName={cx('active')}>Ninja Ocean</Link>
-          { user.authenticated ? (
-            <Link onClick={logOut}
-              className={cx('item')} to="/">Logout</Link>
-          ) : (
-            <Link className={cx('item')} to="/login">Log in</Link>
-          )}
-          <Link className={cx('item')} to="/dashboard">Dashboard</Link>
-          <Link to="/about" className={cx('item')} activeClassName={cx('active')}>About</Link>
+        <Link to="/" className={cx('item', 'logo')} activeClassName={cx('active')}>TaskCRM</Link>
+        <Link className={cx('item')} to="/">Главная</Link>
+        <Link className={cx('item')} activeClassName={cx('active')} to="/about" >Тест</Link>
+        { user.authenticated ? (
+          <Link className={cx('item')} to="/" onClick={logOut} >Выйти</Link>
+        ) : (
+          <Link className={cx('item')} to="/login">Войти</Link>
+        )}
       </nav>
     );
 };
