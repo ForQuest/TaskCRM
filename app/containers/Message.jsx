@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 class Message extends Component {
   componentWillMount () {
-    setTimeout((() => this.props.dismissMessage()).bind(this), 5000);
+    this.props.message?setTimeout((() => this.props.dismissMessage()).bind(this), 5000):null;
   }
 
   render () {

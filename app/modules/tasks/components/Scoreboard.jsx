@@ -11,14 +11,6 @@ class Scoreboard extends Component {
     super(props);
   }
 
-  componentWillMount() {
-    this.timer = setInterval(() => this.props.tickEvent(), 100);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
   renderTopicList(){
     const { topics } = this.props;
     return topics.map((topic, key) => {
@@ -50,13 +42,12 @@ class Scoreboard extends Component {
 };
 
 Scoreboard.propTypes = {
-  topics: PropTypes.array.isRequired,
-  tickEvent: PropTypes.func.isRequired
+  topics: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    tick: state.tick
+    tick: state.timer.tick
   };
 }
 

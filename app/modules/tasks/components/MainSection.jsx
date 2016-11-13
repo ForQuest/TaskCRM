@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import TopicItem from 'components/TopicItem';
+import TopicItem from './TopicItem';
 import classNames from 'classnames/bind';
 import styles from 'css/components/main-section';
 

@@ -7,6 +7,8 @@ import routes from '../routes';
 import rootReducer from 'reducers';
 import promiseMiddleware from 'middlewares/promiseMiddleware';
 import requestMiddleware from 'middlewares/requestMiddleware';
+import tickMiddleware from 'middlewares/tickMiddleware';
+import * as types from 'types';
 
 /*
  * @param {Object} initial state to bootstrap our stores with for server-side rendering
@@ -16,12 +18,14 @@ import requestMiddleware from 'middlewares/requestMiddleware';
  */
 export default function configureStore(initialState, history) {
   // Installs hooks that always keep react-router and redux store in sync
-  const middleware = [thunk, promiseMiddleware, requestMiddleware ];
+  const middleware = [thunk, tickMiddleware, requestMiddleware, promiseMiddleware ];
   let createStoreWithMiddleware;
 
   if (__DEVCLIENT__) {
     middleware.push(createLogger({
-      predicate: (getState, action) => action.type !== 'TICK_EVENT',
+      predicate: (getState, action) => action.type !== types.TICK_EVENT &&
+                                       action.type !== types.TICK_START &&
+                                       action.type !== types.TICK_STOP
       // collapsed: (getState, action) => action.type === 'TICK_EVENT'
     }));
     createStoreWithMiddleware = compose(

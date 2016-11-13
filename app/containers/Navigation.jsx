@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import { logOut } from 'actions/users';
 
@@ -11,13 +11,13 @@ const cx = classNames.bind(styles);
 const Navigation = ({ user, logOut }) => {
     return (
       <nav className={cx('navigation')} role="navigation">
-        <Link to="/" className={cx('item', 'logo')} activeClassName={cx('active')}>TaskCRM</Link>
-        <Link className={cx('item')} to="/">Главная</Link>
+        <span className={cx('item', 'logo', 'active')} >TaskCRM</span>
+        <IndexLink className={cx('item')} activeClassName={cx('active')} to="/" >Главная</IndexLink>
         <Link className={cx('item')} activeClassName={cx('active')} to="/about" >Тест</Link>
         { user.authenticated ? (
-          <Link className={cx('item')} to="/" onClick={logOut} >Выйти</Link>
+          <Link className={cx('item')} activeClassName={cx('active')} onClick={logOut} >Выйти</Link>
         ) : (
-          <Link className={cx('item')} to="/login">Войти</Link>
+          <Link className={cx('item')} activeClassName={cx('active')} to="/login">Войти</Link>
         )}
       </nav>
     );
@@ -34,4 +34,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { logOut })(Navigation);
+export default connect(mapStateToProps, { logOut }, null, {pure:false})(Navigation);

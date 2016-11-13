@@ -9,10 +9,12 @@ import * as types from 'types';
 import configureStore from 'store/configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 import { loadState, saveState } from 'store/localStorage';
+import { host, port, basicauth } from 'config/app';
 
 
-let auth = new Buffer('web:websecret');
-axios.defaults.headers.common['Authorization'] = 'Basic ' + auth.toString('base64');
+// configure baseURL for axios requests (for serverside API calls)
+axios.defaults.baseURL = `http://${host}:${port}`;
+axios.defaults.headers.common['Authorization'] = 'Basic ' + basicauth;
 
 // Grab the state from a global injected into
 // server-generated HTML
@@ -20,29 +22,15 @@ const initialState = loadState();
 
 const store = configureStore(initialState, browserHistory);
 
-store.subscribe(() => {
-  saveState(store.getState());
-});
+store.subscribe(() => saveState({ user: store.getState().user }));
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-/**
- * Callback function handling frontend route changes.
- */
-function onUpdate() {
-  // store.dispatch({ type: types.CREATE_REQUEST });
-  // preRenderMiddleware(this.state)
-  //   .then(data => {
-  //     return store.dispatch({ type: types.REQUEST_SUCCESS, data });
-  //   });
-}
-
-
-// Router converts <Route> element hierarchy to a route config:
-// Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
 render(
   <Provider store={store}>
-    <Router history={history} onUpdate={onUpdate}>
+    <Router history={history}>
       {routes}
     </Router>
-  </Provider>, document.getElementById('app'));
+  </Provider>, 
+  document.getElementById('app')
+);
