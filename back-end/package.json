@@ -1,9 +1,12 @@
 {
-  "name": "react-webpack-node",
-  "version": "1.7.17",
-  "description": "A simple Node.js app using Express 4 with Webpack, React, alt, ImmutableJS",
-  "repository": "https://github.com/choonkending/react-webpack-node",
-  "main": "index.js",
+  "name": "TaskCRM_Back-end",
+  "version": "0.0.1",
+  "description": "Simple control system development team, helping to distribute tasks and track the effectiveness of each developer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ForQuest/TaskCRM"
+  },
+  "main": "compiled/index.js",
   "scripts": {
     "babel": "babel --presets es2015,stage-0 --ignore node_modules,public --copy-files",
     "babel-node": "babel-node --presets es2015,stage-0 --ignore node_modules,public",
@@ -21,8 +24,11 @@
     "postinstall": "npm run build",
     "keep-green": "git merge master && rm -rf node_modules && npm install && npm start"
   },
-  "author": "Choon Ken Ding",
+  "author": "ForQuest Dev",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ForQuest/TaskCRM/issues"
+  },
   "devDependencies": {
     "enzyme": "^2.4.1",
     "eslint": "^3.5.0",
