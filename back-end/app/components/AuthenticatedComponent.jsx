@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {pushState} from 'react-router-redux';
+import { push } from 'react-router-redux';
 
 export default function requireAuthentication(Component) {
   class AuthenticatedComponent extends React.Component {
@@ -16,7 +16,7 @@ export default function requireAuthentication(Component) {
     checkAuth (isAuthenticated) {
       if (!isAuthenticated) {
         let redirectAfterLogin = this.props.location.pathname;
-        this.props.dispatch(pushState(null, '/login'));
+        this.props.dispatch(push('/login'));
       }
     }
 

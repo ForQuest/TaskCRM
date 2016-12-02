@@ -5,9 +5,8 @@ import Vote from 'containers/Vote';
 import About from 'containers/About';
 import LoginOrRegister from 'containers/LoginOrRegister';
 import Dashboard from 'containers/Dashboard';
-import requireAuthentication from 'components/AuthenticatedComponent'
-import { makeRequest } from 'services';
-import axios from 'axios';
+import requireAuthentication from 'components/AuthenticatedComponent';
+import fetchVoteData from 'fetch-data/fetchVoteData';
 
 // export default (store) => {
 //   const fetchVoteData = () => {
@@ -34,7 +33,7 @@ import axios from 'axios';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={requireAuthentication(Vote)} />
+    <IndexRoute component={requireAuthentication(Vote)} fetchData={fetchVoteData} />
     <Route path="login" component={LoginOrRegister} />
     <Route path="dashboard" component={requireAuthentication(Dashboard)} />
     <Route path="about" component={requireAuthentication(About)} />

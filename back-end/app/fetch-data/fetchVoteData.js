@@ -5,4 +5,3 @@ const fetchData = () => makeRequest('get','/api/topic')
   .catch(res => Array(res.response && res.response.data && res.response.data.message));
 
 export default fetchData;
-

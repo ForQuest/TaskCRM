@@ -24,9 +24,9 @@ describe('Users reducer', () => {
     }));
   });
 
-  it('should handle LOGIN_SUCCESS_USER', () => {
+  it('should handle PASSWORD_LOGIN_SUCCESS', () => {
     expect(
-      reducer(undefined, {type: types.LOGIN_SUCCESS_USER})
+      reducer(undefined, {type: types.PASSWORD_LOGIN_SUCCESS})
     ).toEqual(Object.assign({}, initialState, {
       isWaiting: false,
       authenticated: true,
@@ -34,10 +34,10 @@ describe('Users reducer', () => {
     }));
   });
 
-  it('should handle LOGIN_ERROR_USER', () => {
+  it('should handle PASSWORD_LOGIN_FAILURE', () => {
     const message = 'Success';
     expect(
-      reducer(undefined, {type: types.LOGIN_ERROR_USER, message})
+      reducer(undefined, {type: types.PASSWORD_LOGIN_FAILURE, message})
     ).toEqual(Object.assign({}, initialState, {
       isWaiting: false,
       authenticated: false,
@@ -83,18 +83,18 @@ describe('Users reducer', () => {
     }));
   });
 
-  it('should handle LOGOUT_SUCCESS_USER', () => {
+  it('should handle USER_LOGOUT_SUCCESS', () => {
     expect(
-      reducer(undefined, {type: types.LOGOUT_SUCCESS_USER})
+      reducer(undefined, {type: types.USER_LOGOUT_SUCCESS})
     ).toEqual(Object.assign({}, initialState, {
       isWaiting: false,
       authenticated: false
     }));
   });
 
-  it('should handle LOGOUT_ERROR_USER', () => {
+  it('should handle USER_LOGOUT_FAILURE', () => {
     expect(
-      reducer(undefined, {type: types.LOGOUT_ERROR_USER})
+      reducer(undefined, {type: types.USER_LOGOUT_FAILURE})
     ).toEqual(Object.assign({}, initialState, {
       isWaiting: false,
       authenticated: true

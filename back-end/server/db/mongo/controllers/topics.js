@@ -36,10 +36,9 @@ export function update(req, res) {
   const query = { id: req.params.id };
   const type = req.body.type;
   const isIncrement = req.body.isIncrement;
-  const isFull = req.body.isFull;
   const startDate = req.body.startDate;
   const stopDate = req.body.stopDate;
-  const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
+  const omitKeys = ['id', '_id', '_v', 'isIncrement'];
   const data = _.omit(req.body, omitKeys);
 
   switch (type) {
@@ -84,7 +83,7 @@ export function update(req, res) {
       });
     break;
     default:
-      return res.status(500);
+      return res.status(404);
     break;
   }
 }

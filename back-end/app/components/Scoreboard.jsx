@@ -10,15 +10,13 @@ class Scoreboard extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    this.timer = setInterval(() => this.tick(), 1000);
-  }
-  componentWillUnmount() {
-    clearInterval(this.timer);
+
+  componentWillMount() {
+    this.timer = setInterval(() => this.props.tickEvent(), 100);
   }
 
-  tick() {
-    this.props.tickEvent();
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   renderTopicList(){

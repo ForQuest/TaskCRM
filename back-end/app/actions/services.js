@@ -1,5 +1,8 @@
+import { polyfill } from 'es6-promise';
 import axios from 'axios';
 import { loadState } from '../store/localStorage';
+
+polyfill();
 
 export const makeRequest = (method, api = '/api', data) => {
   let { user: { access_token }} = loadState();

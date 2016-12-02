@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
@@ -8,6 +9,10 @@ import * as types from 'types';
 import configureStore from 'store/configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 import { loadState, saveState } from 'store/localStorage';
+
+
+let auth = new Buffer('web:websecret');
+axios.defaults.headers.common['Authorization'] = 'Basic ' + auth.toString('base64');
 
 // Grab the state from a global injected into
 // server-generated HTML
@@ -25,21 +30,11 @@ const history = syncHistoryWithStore(browserHistory, store);
  * Callback function handling frontend route changes.
  */
 function onUpdate() {
-  // Prevent duplicate fetches when first loaded.
-  // Explanation: On server-side render, we already have __INITIAL_STATE__
-  // So when the client side onUpdate kicks in, we do not need to fetch twice.
-  // We set it to null so that every subsequent client-side navigation will
-  // still trigger a fetch data.
-  // Read more: https://github.com/choonkending/react-webpack-node/pull/203#discussion_r60839356
-  if (window.__INITIAL_STATE__ !== null) {
-    window.__INITIAL_STATE__ = null;
-    return;
-  }
-  store.dispatch({ type: types.CREATE_REQUEST });
-  preRenderMiddleware(this.state)
-    .then(data => {
-      return store.dispatch({ type: types.REQUEST_SUCCESS, data });
-    });
+  // store.dispatch({ type: types.CREATE_REQUEST });
+  // preRenderMiddleware(this.state)
+  //   .then(data => {
+  //     return store.dispatch({ type: types.REQUEST_SUCCESS, data });
+  //   });
 }
 
 

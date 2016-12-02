@@ -13,9 +13,13 @@ const cx = classNames.bind(styles);
 
 class Vote extends Component {
 
+  componentWillMount () {
+    this.props.fetchTopics();
+  }
+  
   render() {
     const {newTopic, topics, isAuth, typing, createTopic, destroyTopic, incrementCount, decrementCount, tickEvent, pauseTopic } = this.props;
-    // setInterval(() => tickEvent(), 1000);
+    
     return (
       <div className={cx('vote')}>
         <EntryBox topic={newTopic}
@@ -34,6 +38,7 @@ class Vote extends Component {
 
 Vote.propTypes = {
   tickEvent: PropTypes.func.isRequired,
+  fetchTopics: PropTypes.func.isRequired,
   topics: PropTypes.array.isRequired,
   typing: PropTypes.func.isRequired,
   createTopic: PropTypes.func.isRequired,
@@ -54,4 +59,4 @@ function mapStateToProps(state) {
 
 // Read more about where to place `connect` here:
 // https://github.com/rackt/react-redux/issues/75#issuecomment-135436563
-export default connect(mapStateToProps, { createTopic, typing, incrementCount, decrementCount, destroyTopic, tickEvent, pauseTopic })(Vote);
+export default connect(mapStateToProps, { createTopic, typing, incrementCount, decrementCount, destroyTopic, tickEvent, pauseTopic, fetchTopics })(Vote);

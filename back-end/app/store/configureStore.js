@@ -19,7 +19,10 @@ export default function configureStore(initialState, history) {
   let createStoreWithMiddleware;
 
   if (__DEVCLIENT__) {
-    middleware.push(createLogger());
+    middleware.push(createLogger({
+      predicate: (getState, action) => action.type !== 'TICK_EVENT',
+      // collapsed: (getState, action) => action.type === 'TICK_EVENT'
+    }));
     createStoreWithMiddleware = compose(
       applyMiddleware(...middleware),
       reduxReactRouter({routes, history}),

@@ -49,13 +49,13 @@ describe('Users Async Actions', () => {
     });
 
   describe('User Login', () => {
-    it('dispatches MANUAL_LOGIN_USER and LOGIN_SUCCESS_USER when Manual Login returns status of 200 and routes user to /', (done) => {
+    it('dispatches MANUAL_LOGIN_USER and PASSWORD_LOGIN_SUCCESS when Manual Login returns status of 200 and routes user to /', (done) => {
       const expectedActions = [
       {
         type: types.MANUAL_LOGIN_USER
       },
       {
-        type: types.LOGIN_SUCCESS_USER,
+        type: types.PASSWORD_LOGIN_SUCCESS,
         message: response.data.message
       },
       {
@@ -69,27 +69,27 @@ describe('Users Async Actions', () => {
       sandbox.stub(axios, 'post').returns(Promise.resolve(response));
 
       const store = mockStore(initialState);
-      store.dispatch(actions.manualLogin(data))
+      store.dispatch(actions.passwordLogin(data))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
         }).then(done)
         .catch(done);
     });
 
-    it('dispatches MANUAL_LOGIN_USER and LOGIN_ERROR_USER when Manual Login returns status that is NOT 200', (done) => {
+    it('dispatches MANUAL_LOGIN_USER and PASSWORD_LOGIN_FAILURE when Manual Login returns status that is NOT 200', (done) => {
       const expectedActions = [
       {
         type: types.MANUAL_LOGIN_USER
       },
       {
-        type: types.LOGIN_ERROR_USER,
+        type: types.PASSWORD_LOGIN_FAILURE,
         message: errMsg.response.data.message
       }];
 
       sandbox.stub(axios, 'post').returns(Promise.reject(errMsg));
 
       const store = mockStore(initialState);
-      store.dispatch(actions.manualLogin(data))
+      store.dispatch(actions.passwordLogin(data))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
         }).then(done)
@@ -153,7 +153,7 @@ describe('Users Async Actions', () => {
         type: types.LOGOUT_USER
       },
       {
-        type: types.LOGOUT_SUCCESS_USER
+        type: types.USER_LOGOUT_SUCCESS
       }];
 
       sandbox.stub(axios, 'post').returns(Promise.resolve({status: 200}));
@@ -193,14 +193,14 @@ describe('Users Action Creators', () => {
       expect(actions.beginLogin()).toEqual({type: types.MANUAL_LOGIN_USER});
     });
 
-    it('loginSuccess returns action type LOGIN_SUCCESS_USER and a success message', () => {
+    it('loginSuccess returns action type PASSWORD_LOGIN_SUCCESS and a success message', () => {
       const message = 'Success';
-      expect(actions.loginSuccess(message)).toEqual({type: types.LOGIN_SUCCESS_USER, message});
+      expect(actions.loginSuccess(message)).toEqual({type: types.PASSWORD_LOGIN_SUCCESS, message});
     });
 
-    it('loginError returns action type LOGIN_ERROR_USER and an error message', () => {
+    it('loginError returns action type PASSWORD_LOGIN_FAILURE and an error message', () => {
       const message = 'Oops! Something went wrong!';
-      expect(actions.loginError(message)).toEqual({type: types.LOGIN_ERROR_USER, message});
+      expect(actions.loginError(message)).toEqual({type: types.PASSWORD_LOGIN_FAILURE, message});
     });
   });
   describe('User Signup', () => {
@@ -221,10 +221,10 @@ describe('Users Action Creators', () => {
       expect(actions.beginLogout()).toEqual({type: types.LOGOUT_USER});
     });
     it('signUpSuccess returns action type SIGNUP_SUCCESS_USER', () => {
-      expect(actions.logoutSuccess()).toEqual({type: types.LOGOUT_SUCCESS_USER});
+      expect(actions.logoutSuccess()).toEqual({type: types.USER_LOGOUT_SUCCESS});
     });
     it('signUpError returns action type SIGNUP_ERROR_USER', () => {
-      expect(actions.logoutError()).toEqual({type: types.LOGOUT_ERROR_USER});
+      expect(actions.logoutError()).toEqual({type: types.USER_LOGOUT_FAILURE});
     });
   });
 });
