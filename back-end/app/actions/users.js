@@ -1,0 +1,75 @@
+import { polyfill } from 'es6-promise';
+import request from 'axios';
+import { push } from 'react-router-redux';
+import * as types from 'types';
+import { makeRequest, getMessage} from 'services';
+
+polyfill();
+
+// Sign Up Action Creators
+export function signUpError(message) {
+  return {
+    type: types.SIGNUP_ERROR_USER,
+    message
+  };
+}
+
+export function beginSignUp() {
+  return { type: types.SIGNUP_USER };
+}
+
+export function signUpSuccess(message) {
+  return {
+    type: types.SIGNUP_SUCCESS_USER,
+    message
+  };
+}
+
+export function passwordLogin(data) {
+  return {
+    type: types.PASSWORD_LOGIN,
+    promise: makeRequest('post', '/login', {
+      grant_type: 'password',
+      ...data
+    })
+  };
+}
+
+export function refreshLogin(refresh_token, lastEvent) {
+  return {
+    type: types.REFRESH_LOGIN,
+    promise: makeRequest('post', '/login', {
+      grant_type: 'refresh_token',
+      refresh_token: refresh_token
+    }),
+    lastEvent
+  };
+}
+
+export function logOut() {
+  return {
+    type: types.USER_LOGOUT,
+    promise: makeRequest('post', '/logout')
+  };
+}
+
+export function signUp(data) {
+  return dispatch => {
+    dispatch(beginSignUp());
+
+    return makeRequest('post', '/signup', data)
+      .then(response => {
+        if (response.status === 200) {
+          dispatch(signUpSuccess(response.data.message));
+          dispatch(push('/'));
+        } else {
+          dispatch(signUpError('Oops! Something went wrong'));
+        }
+      })
+      .catch(err => {
+        dispatch(signUpError(getMessage(err)));
+      });
+  };
+}
+
+

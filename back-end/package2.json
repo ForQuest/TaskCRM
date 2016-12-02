@@ -1,0 +1,26 @@
+{
+  "name": "TaskCRM_Back-end",
+  "version": "0.0.1",
+  "description": "Back-end for TaskCRM",
+  "main": "/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ForQuest/TaskCRM"
+  },
+  "keywords": [
+    "CRM"
+  ],
+  "author": "ForQuest Dev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ForQuest/TaskCRM/issues"
+  },
+  "homepage": "https://github.com/ForQuest/TaskCRM",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.4.4"
+  }
+}
