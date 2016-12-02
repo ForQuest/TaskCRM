@@ -59,25 +59,6 @@
     "node": "5.x"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "body-parser": "^1.15.0",
-    "bootable": "~0.2.0",
-    "bootable-environment": "~0.2.0",
-    "cookie-parser": "^1.4.1",
-    "crypto": "0.0.3",
-    "errorhandler": "^1.4.3",
-    "express": "^4.13.4",
-    "express-session": "^1.13.0",
-    "method-override": "^2.3.5",
-    "mongoose": "^4.4.4",
-    "multer": "^1.1.0",
-    "nconf": "^0.8.4",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
-    "require-tree": "^1.1.1",
-    "serve-static": "^1.10.2",
-    "winston": "^2.2.0"
-=======
     "autoprefixer": "^6.4.0",
     "axios": "^0.15.2",
     "babel-cli": "^6.14.0",
@@ -159,6 +140,5 @@
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.12.2"
->>>>>>> rebuild
   }
 }
