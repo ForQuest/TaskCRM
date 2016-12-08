@@ -2,7 +2,6 @@ import { polyfill } from 'es6-promise';
 import request from 'axios';
 import { push } from 'react-router-redux';
 import * as types from 'types';
-import { makeRequest, getMessage} from 'services';
 
 polyfill();
 
@@ -60,24 +59,4 @@ export function logOut() {
     promise: makeRequest('post', '/logout')
   };
 }
-
-export function signUp(data) {
-  return dispatch => {
-    dispatch(beginSignUp());
-
-    return makeRequest('post', '/signup', data)
-      .then(response => {
-        if (response.status === 200) {
-          dispatch(signUpSuccess(response.data.message));
-          dispatch(push('/'));
-        } else {
-          dispatch(signUpError('Oops! Something went wrong'));
-        }
-      })
-      .catch(err => {
-        dispatch(signUpError(getMessage(err)));
-      });
-  };
-}
-
 
