@@ -1,4 +1,5 @@
 import express from 'express';
+import forceSSL from 'express-force-ssl';
 import webpack from 'webpack';
 import https from 'https';
 import fs from 'fs';
@@ -17,21 +18,12 @@ var credentials = {key: privateKey, cert: certificate};
 
 const httpsServer = https.createServer(credentials, app);
 
-function requireHTTPS(req, res, next) {
-    if (!req.secure) {
-        //FYI this should work for local development as well
-        return res.redirect('https://' + req.get('host') + req.url);
-    }
-    next();
-}
-
 /*
  * Database-specific setup
  * - connect to MongoDB using mongoose
  * - register mongoose Schema
  */
 connect();
-
 /*
  * REMOVE if you do not need passport configuration
  */
@@ -54,6 +46,8 @@ if (ENV === 'development') {
 expressConfig(app);
 app.disable('x-powered-by');
 
+ENV === 'production'?app.use(forceSSL):null;
+
 /*
  * REMOVE if you do not need any routes
  *
@@ -69,8 +63,4 @@ routesConfig(app);
  */
 app.get('*', App.default);
 
-
-ENV === 'production'?app.use(requireHTTPS):null;
-
-app.listen(app.get('port'));
-httpsServer.listen(app.get('sslport'));
+ENV === 'production'?httpsServer.listen(app.get('sslport')):app.listen(app.get('port'));

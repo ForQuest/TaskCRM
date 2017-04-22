@@ -1,14 +1,8 @@
-const host = process.env.HOSTNAME || 'localhost';
-const port = process.env.PORT || '3000';
-const basicauth = new Buffer('web:websecret').toString('base64');
-const isDev = () => __DEVCLIENT__ || __DEVSERVER__;
+export const isDev = () => __DEVCLIENT__ || __DEVSERVER__;
+export const host = process.env.HOSTNAME || 'localhost';
+export const port = process.env.PORT || '80';
+export const basicauth = new Buffer('web:websecret').toString('base64');
+export const baseURL = isDev?'http://'+host+':'+port:'https://'+host;
 
-const trackingID = null;
-
-export {
-  host,
-  port,
-  trackingID,
-  isDev
-};
+export const trackingID = null;
 

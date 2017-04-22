@@ -2,7 +2,7 @@ export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
     if (serializedState === null) {
-      return undefined;
+      return { user: { authenticated: false } };
     }
     return JSON.parse(serializedState);
   } catch (err) {

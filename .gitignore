@@ -1,6 +1,7 @@
 /node_modules/*
 /public/*
 /compiled/*
+/server/*
 *.log
 *.sublime-project
 *.sublime-workspace

@@ -9,11 +9,13 @@ import * as types from 'types';
 import configureStore from 'store/configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 import { loadState, saveState } from 'store/localStorage';
-import { host, port, basicauth } from 'config/app';
+import { baseURL, basicauth } from 'config/app';
 
 
 // configure baseURL for axios requests (for serverside API calls)
-axios.defaults.baseURL = `http://${host}:${port}`;
+axios.defaults.baseURL = baseURL;
+console.log(__DEVSERVER__);
+console.log(__DEVCLIENT__);
 axios.defaults.headers.common['Authorization'] = 'Basic ' + basicauth;
 
 // Grab the state from a global injected into

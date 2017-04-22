@@ -22,12 +22,7 @@ module.exports = {
       libraryTarget: 'commonjs2'
     },
     module: {
-      loaders: commonLoaders.concat([
-           {
-              test: /\.css$/,
-              loader: 'css/locals?module&localIdentName=[name]__[local]___[hash:base64:5]'
-           }
-      ])
+      loaders: commonLoaders
     },
     resolve: {
       root: [path.join(__dirname, '..', 'app')],

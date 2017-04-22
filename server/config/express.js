@@ -13,8 +13,8 @@ import helmet from 'helmet';
 
 export default (app) => {
 
-  app.set('port', (process.env.PORT || 3000));
-  app.set('sslport', (ENV === 'production'?443:3443));
+  app.set('port', (process.env.PORT || 80));
+  app.set('sslport', 443 );
 
   if (ENV === 'production') {
     app.use(gzip());

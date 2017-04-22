@@ -5,7 +5,7 @@ import { RouterContext } from 'react-router';
 import { trackingID } from 'config/app';
 import Helmet from 'react-helmet';
 
-const createTrackingScript = trackingID =>
+const createTrackingScript = trackingID => 
 `<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -15,7 +15,7 @@ const createTrackingScript = trackingID =>
   ga('send', 'pageview');
   </script>`;
 
-const buildPage = ({  initialState, headAssets }) => {
+const buildPage = ( headAssets ) => {
   return `
     <!doctype html>
     <html>
@@ -25,7 +25,6 @@ const buildPage = ({  initialState, headAssets }) => {
         ${headAssets.link.toString()}
       </head>
       <body>
-        ${initialState?`<div id='conf'><script>if(window.localStorage.getItem('state')){document.getElementById('conf').remove()}else{window.localStorage.setItem('state', '${JSON.stringify(initialState)}');document.getElementById('conf').remove()}</script></div>`:``}
         <div id="app"></div>
         ${createTrackingScript(trackingID)}
         <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
@@ -33,8 +32,8 @@ const buildPage = ({  initialState, headAssets }) => {
     </html>`;
 };
 
-export default (initialState) => {
+export default () => {
   const headAssets = Helmet.rewind();
-  return buildPage({ initialState, headAssets });
+  return buildPage( headAssets );
 };
 
