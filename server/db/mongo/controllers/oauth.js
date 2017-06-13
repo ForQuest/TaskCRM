@@ -10,6 +10,7 @@ const server = oauth2orize.createServer();
 server.exchange(oauth2orize.exchange.password( 
   (client, username, password, scope, done) => 
     User.findOne({ username: username }, (err, user) => {
+        console.log('test!');
         if (err) return done(err);
         if (!user) return done(null, false, { message: 'Your email is not correct.' });
         user.comparePassword(password, (passErr, isMatch) => { if (!isMatch) return done(null, false, { message: 'Your email or password combination is not correct.' }) });

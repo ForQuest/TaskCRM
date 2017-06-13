@@ -41,6 +41,7 @@ export default function requestMiddleware({ getState, dispatch }) {
       .catch(({ data, response }) => {
         const { user: { refresh_token }} = getState();
         const { statusText } = response;
+        console.log(response);
         dispatch({ ...rest, message: statusText, type: FAILURE });
 
         switch(response.status) {

@@ -26,4 +26,3 @@ export const DESTROY_TOPIC = 'DESTROY_TOPIC';
 export const START_TOPIC = 'START_TOPIC';
 export const STOP_TOPIC = 'STOP_TOPIC';
 export const TYPING = 'TYPING';
-export const TICK_EVENT = 'TICK_EVENT';

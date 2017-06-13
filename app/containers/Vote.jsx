@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-import * as Tasks from 'modules/tasks/components';
-import * as actions from 'modules/tasks/actions';
+import { Tasks } from 'modules';
 import * as tickEvents from 'actions/time';
 import styles from 'css/components/vote';
 
@@ -24,15 +24,15 @@ class Vote extends Component {
     
     return (
       <div className={cx('vote')}>
-        <Tasks.EntryBox topic={newTopic}
+        <Tasks.Components.EntryBox topic={newTopic}
           onEntryChange={typing}
           onEntrySave={createTopic} />
-        <Tasks.MainSection topics={topics}
+        <Tasks.Components.MainSection topics={topics}
           onIncrement={incrementCount}
           onDecrement={decrementCount}
           onDestroy={destroyTopic}
           onPauseTopic={pauseTopic} />
-        <Tasks.Scoreboard topics={topics} />
+        <Tasks.Components.Scoreboard topics={topics} />
       </div>
     );
   }
@@ -60,4 +60,4 @@ function mapStateToProps(state) {
 
 // Read more about where to place `connect` here:
 // https://github.com/rackt/react-redux/issues/75#issuecomment-135436563
-export default connect(mapStateToProps, { ...actions, ...tickEvents })(Vote);
+export default connect(mapStateToProps, { ...Tasks.Actions, ...tickEvents })(Vote);

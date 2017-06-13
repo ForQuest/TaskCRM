@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import TopicTextInput from './TopicTextInput';
 import classNames from 'classnames/bind';
 import styles from 'css/components/entrybox';
