@@ -1,3 +1,5 @@
+import { ModulsTypes } from 'modules';
+
 // ========= USERS ACTIONS BEGIN =========
 export const PASSWORD_LOGIN = 'PASSWORD_LOGIN';
 export const PASSWORD_LOGIN_REQUEST = 'PASSWORD_LOGIN_REQUEST';

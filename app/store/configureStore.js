@@ -1,13 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { reduxReactRouter } from 'redux-router';
+import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 import routes from '../routes';
 import rootReducer from 'reducers';
 import promiseMiddleware from 'middlewares/promiseMiddleware';
 import requestMiddleware from 'middlewares/requestMiddleware';
 import tickMiddleware from 'middlewares/tickMiddleware';
+import { isClient, isDebug } from '../../config/app';
 import * as types from 'types';
 
 /*
@@ -19,28 +20,22 @@ import * as types from 'types';
 export default function configureStore(initialState, history) {
   // Installs hooks that always keep react-router and redux store in sync
   const middleware = [thunk, tickMiddleware, requestMiddleware, promiseMiddleware ];
-  let createStoreWithMiddleware;
+  let store;
 
-  if (__DEVCLIENT__) {
+  if (isClient && isDebug) {
     middleware.push(createLogger({
       predicate: (getState, action) => action.type !== types.TICK_EVENT &&
                                        action.type !== types.TICK_START &&
                                        action.type !== types.TICK_STOP
       // collapsed: (getState, action) => action.type === 'TICK_EVENT'
     }));
-    createStoreWithMiddleware = compose(
+    store = createStore(rootReducer, initialState, compose(
       applyMiddleware(...middleware),
-      reduxReactRouter({routes, history}),
       typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
-    );
+    ));
   } else {
-    createStoreWithMiddleware = compose(
-      applyMiddleware(...middleware),
-      reduxReactRouter({routes, history})
-    );
+    store = createStore(rootReducer, initialState, compose( applyMiddleware(...middleware), f => f ));
   }
-
-  const store = createStoreWithMiddleware(createStore)(rootReducer, initialState);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

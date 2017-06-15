@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Page from 'pages/Page';
 import AppContainer from 'containers/App';
 import { title, meta, link } from 'config/headAssets';

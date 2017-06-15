@@ -4,6 +4,7 @@ import request from 'axios';
 import md5 from 'spark-md5';
 import * as lib from 'lib';
 import * as types from 'types';
+console.log(types);
 
 polyfill();
 

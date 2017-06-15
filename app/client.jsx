@@ -14,9 +14,7 @@ import { baseURL, basicauth } from 'config/app';
 
 // configure baseURL for axios requests (for serverside API calls)
 axios.defaults.baseURL = baseURL;
-console.log(__DEVSERVER__);
-console.log(__DEVCLIENT__);
-axios.defaults.headers.common['Authorization'] = 'Basic ' + basicauth;
+//axios.defaults.headers.common['Authorization'] = 'Basic ' + basicauth;
 
 // Grab the state from a global injected into
 // server-generated HTML

@@ -1,4 +1,4 @@
-// import deserializeUser from './deserializeUser';
+ import deserializeUser from './deserializeUser';
 // import google from './google';
 import local from './local';
 import bearer from './bearer';
