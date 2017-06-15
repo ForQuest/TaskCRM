@@ -2,6 +2,9 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssCssnext = require('postcss-cssnext');
+const postcssMixins = require('postcss-mixins');
+const postcssColorFunction = require('postcss-color-function');
+const postcssSimpleVars = require('postcss-simple-vars');
 const postcssReporter = require('postcss-reporter');
 const PATHS = require('../paths');
 
@@ -40,6 +43,9 @@ module.exports = ({ production = false, browser = false } = {}) => {
       options: {
         plugins: [
           postcssImport({ path: path.resolve(PATHS.app, './css') }),
+          postcssMixins({ mixinsDir: path.join('./app/css/bootstrap', 'mixins')}),
+          postcssSimpleVars(),
+          postcssColorFunction(),
           postcssCssnext({ browsers: ['> 1%', 'last 2 versions'] }),
           postcssReporter({ clearMessages: true })
         ]
