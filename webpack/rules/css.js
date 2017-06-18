@@ -1,6 +1,19 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postcssImport = require('postcss-import');
+
+const postcssSimpleVars = require('postcss-simple-vars');
+const postcssMixins = require('postcss-mixins');
+const postcssCalc = require('postcss-calc');
+const postcssFor = require('postcss-for');
+const postcssColor = require('postcss-color-function');
+const postcssConditionals = require('postcss-conditionals');
+const postcssNested = require('postcss-nested');
+const postcssMath = require('postcss-math');
+const postcssPercentage = require('postcss-percentage');
+
+const autoprefixer = require('autoprefixer');
+
 const postcssCssnext = require('postcss-cssnext');
 const postcssReporter = require('postcss-reporter');
 const PATHS = require('../paths');
@@ -40,7 +53,16 @@ module.exports = ({ production = false, browser = false } = {}) => {
       options: {
         plugins: [
           postcssImport({ path: path.resolve(PATHS.app, './css') }),
-          postcssCssnext({ browsers: ['> 1%', 'last 2 versions'] }),
+          postcssMixins(),
+          postcssNested(),
+          postcssFor(),
+          postcssSimpleVars(),
+          postcssCalc(),
+          postcssMath(),
+          postcssPercentage(),
+          postcssColor(),
+          postcssConditionals(),
+          autoprefixer(),
           postcssReporter({ clearMessages: true })
         ]
       }

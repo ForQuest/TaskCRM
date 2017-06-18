@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
 import { passwordLogin } from 'actions/users';
-import styles from 'css/components/login';
+import styles from 'css/bootstrap';
 import hourGlassSvg from 'images/hourglass.svg';
 
 const cx = classNames.bind(styles);

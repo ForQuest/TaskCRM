@@ -1,0 +1,62 @@
+@define-mixin make-grid-columns {
+  @for $j from 1 to 12 {
+    .col-xs-$(j), .col-sm-$(j), .col-md-$(j), .col-lg-$(j) {
+      position: relative;
+      
+      min-height: 1px;
+      padding-left:  calc($grid-gutter-width / 2);
+      padding-right: calc($grid-gutter-width / 2);
+    }
+  }
+}
+@define-mixin float-grid-columns $class {
+  @for $j from 1 to 12 {
+    .col-$(class)-$(j) {
+      float: left;
+    }
+  }
+}
+@define-mixin calc-grid-column $index, $class, $type {
+  @if ($type == width) and ($index > 0) {
+    .col-$(class)-$(index) {
+      width: percentage(calc($index / $grid-columns));
+    }
+  }
+  @if ($type == push) and ($index > 0) {
+    .col-$(class)-push-$(index) {
+      left: percentage(calc($index / $grid-columns));
+    }
+  }
+  @if ($type == push) and ($index == 0) {
+    .col-$(class)-push-0 {
+      left: auto;
+    }
+  }
+  @if ($type == pull) and ($index > 0) {
+    .col-$(class)-pull-$(index) {
+      right: percentage(calc($index / $grid-columns));
+    }
+  }
+  @if ($type == pull) and ($index == 0) {
+    .col-$(class)-pull-0 {
+      right: auto;
+    }
+  }
+  @if ($type == offset) {
+    .col-$(class)-offset-$(index) {
+      margin-left: percentage(calc($index / $grid-columns));
+    }
+  }
+}
+@define-mixin loop-grid-columns $columns, $class, $type {
+  @for $i from 0 to 12 {
+    @mixin calc-grid-column $i, $class, $type {}
+  }
+}
+@define-mixin make-grid $class {
+  @mixin float-grid-columns $class {}
+  @mixin loop-grid-columns $grid-columns, $class, width {}
+  @mixin loop-grid-columns $grid-columns, $class, pull {}
+  @mixin loop-grid-columns $grid-columns, $class, push {}
+  @mixin loop-grid-columns $grid-columns, $class, offset {}
+}

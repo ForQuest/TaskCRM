@@ -5,6 +5,11 @@ import { RouterContext } from 'react-router';
 import { trackingID } from 'config/app';
 import Helmet from 'react-helmet';
 
+import classNames from 'classnames/bind';
+import bootstrap from 'css/adminlte/AdminLTE.css';
+
+const cx = classNames.bind(bootstrap);
+
 const createTrackingScript = trackingID => 
 `<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -24,7 +29,7 @@ const buildPage = ( headAssets ) => {
         ${headAssets.meta.toString()}
         ${headAssets.link.toString()}
       </head>
-      <body>
+      <body class="${cx('skin-blue')}">
         <div id="app"></div>
         ${createTrackingScript(trackingID)}
         <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>

@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from 'css/components/about';
+import bootstrap from 'css/bootstrap';
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(bootstrap);
 
 /*
  * Note: This is kept as a container-level component,
@@ -13,6 +13,14 @@ const About = () => {
   return (
     <div className={cx('about')}>
       <h1 className={cx('header')}>About Ninja Ocean</h1>
+      <div className={cx('container')}>
+        <div className={cx('row')}>
+          <div className={cx('col-md-4')}>col</div>
+          <div className={cx('col-md-4')}>col</div>
+          <div className={cx('col-md-4')}>col</div>
+        </div>
+      </div>
+      <button className={cx(['btn', 'btn-primary'])}>Test</button>
       <div className={cx('description')}>
         <p>Imagine an ocean of ninjas. Now think of it as a metaphor.<br />
           Seriously, we love good tech. React, redux, scala, Haskell, machine learning, you name it!

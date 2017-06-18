@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Navigation from 'containers/Navigation';
 import Message from 'containers/Message';
 import LoginOrRegister from 'containers/LoginOrRegister';
 import classNames from 'classnames/bind';
-import styles from 'css/main';
+import bootstrap from 'css/bootstrap';
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(bootstrap);
 
 
 /*
@@ -19,21 +19,36 @@ const cx = classNames.bind(styles);
  * A better explanation of react-router is available here:
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  */
-const App = ({auth, children}) => {
-  if(auth){
-    return (
-      <div className={cx('app')}>
-        <Navigation />
-        <Message />
-          {children}
-      </div>
-    );
-  } else {
-    return (
-      <div className={cx('app')}>
-        <LoginOrRegister />
-      </div>
-    );
+
+class App extends Component {
+
+  componentWillMount () {
+    document.body.classList.toggle(cx('skin-blue'));
+  }
+
+  componentWillUnmount() {
+    document.body.classList.toggle(cx('skin-blue'));
+  }
+  
+  render(){
+    const { auth, children } = this.props;
+    if(auth){
+      return (
+        <div className={cx('wrapper')}>
+          <Navigation />
+          <Message />
+          <div className={cx('container')}>
+            {children}
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className={cx('container')}>
+          <LoginOrRegister />
+        </div>
+      );
+    }
   }
 };
 
