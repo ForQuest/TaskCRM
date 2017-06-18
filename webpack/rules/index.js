@@ -8,6 +8,7 @@ module.exports = ({ production = false, browser = false } = {}) => (
   [
     javascript({ production, browser }),
     css({ production, browser }),
+    fonts(),
     image()
   ]
 );

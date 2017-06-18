@@ -14,10 +14,10 @@ const postcssPercentage = require('postcss-percentage');
 
 const autoprefixer = require('autoprefixer');
 
-const postcssCssnext = require('postcss-cssnext');
-const postcssMixins = require('postcss-mixins');
-const postcssColorFunction = require('postcss-color-function');
-const postcssSimpleVars = require('postcss-simple-vars');
+// const postcssCssnext = require('postcss-cssnext');
+// const postcssMixins = require('postcss-mixins');
+// const postcssColorFunction = require('postcss-color-function');
+// const postcssSimpleVars = require('postcss-simple-vars');
 const postcssReporter = require('postcss-reporter');
 const PATHS = require('../paths');
 
