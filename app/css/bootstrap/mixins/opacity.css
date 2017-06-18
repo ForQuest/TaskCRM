@@ -1,6 +1,0 @@
-@define-mixin opacity $opacity {
-  opacity: $opacity;
-
-  $opacity-ie: (calc($opacity * 100));
-  filter: alpha(opacity=$opacity-ie);
-}

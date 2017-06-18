@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import { Tasks } from 'modules';
 import * as tickEvents from 'actions/time';
-import styles from 'css/components/vote';
+import styles from 'css/bootstrap';
 
 const cx = classNames.bind(styles);
 
@@ -23,16 +23,24 @@ class Vote extends Component {
     const {newTopic, topics, isAuth, typing, createTopic, destroyTopic, incrementCount, decrementCount, pauseTopic } = this.props;
     
     return (
-      <div className={cx('vote')}>
-        <Tasks.Components.EntryBox topic={newTopic}
-          onEntryChange={typing}
-          onEntrySave={createTopic} />
-        <Tasks.Components.MainSection topics={topics}
-          onIncrement={incrementCount}
-          onDecrement={decrementCount}
-          onDestroy={destroyTopic}
-          onPauseTopic={pauseTopic} />
-        <Tasks.Components.Scoreboard topics={topics} />
+      <div className={cx('container')}>
+        <div className={cx('row')}>
+          <div className={cx('col-md-12')}>
+            <Tasks.Components.EntryBox topic={newTopic}
+              onEntryChange={typing}
+              onEntrySave={createTopic} />
+          </div>
+          <div className={cx('col-md-6')}>
+            <Tasks.Components.MainSection topics={topics}
+              onIncrement={incrementCount}
+              onDecrement={decrementCount}
+              onDestroy={destroyTopic}
+              onPauseTopic={pauseTopic} />
+          </div>
+          <div className={cx('col-md-6')}>
+            <Tasks.Components.Scoreboard topics={topics} />
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,18 +1,16 @@
-@import "variables/variables";
-
 .btn {
   display: inline-block;
-  margin-bottom: 0;
+  margin-bottom: 0; 
   font-weight: $btn-font-weight;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
   cursor: pointer;
-  background-image: none;
+  background-image: none; 
   border: 1px solid transparent;
   white-space: nowrap;
   @mixin button-size $padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $btn-border-radius-base {}
-  @mixin user-select none {}
+  user-select: none;
   &,
   &:active,
   &.active {
@@ -31,16 +29,15 @@
   &.active {
     outline: 0;
     background-image: none;
-    @mixin box-shadow inset 0 3px 5px rgba(0,0,0,.125) {}
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
   }
   &.disabled,
   &[disabled],
   fieldset[disabled] & {
     cursor: $cursor-disabled;
-    @mixin opacity .65 {}
-    @mixin box-shadow none {}
+    opacity: .65;
+    box-shadow: none;
   }
-
 }
 a.btn {
   &.disabled,
@@ -76,7 +73,7 @@ a.btn {
   &[disabled],
   fieldset[disabled] & {
     background-color: transparent;
-    @mixin box-shadow none {}
+    box-shadow: none;
   }
   &,
   &:hover,
@@ -100,11 +97,9 @@ a.btn {
   }
 }
 .btn-lg {
-
   @mixin button-size $padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $btn-border-radius-large {}
 }
 .btn-sm {
-
   @mixin button-size $padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small {}
 }
 .btn-xs {

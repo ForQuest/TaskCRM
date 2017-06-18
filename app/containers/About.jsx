@@ -1,10 +1,8 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from 'css/components/about';
+import bootstrap from 'css/bootstrap';
 
-import styleBootstrap from 'css/bootstrap/buttons';
-
-const cx = classNames.bind(styles);
+const cx = classNames.bind(bootstrap);
 
 const cxb = classNames.bind(styleBootstrap);
 /*
@@ -16,6 +14,14 @@ const About = () => {
   return (
     <div className={cx('about')}>
       <h1 className={cx('header')}>About Ninja Ocean</h1>
+      <div className={cx('container')}>
+        <div className={cx('row')}>
+          <div className={cx('col-md-4')}>col</div>
+          <div className={cx('col-md-4')}>col</div>
+          <div className={cx('col-md-4')}>col</div>
+        </div>
+      </div>
+      <button className={cx(['btn', 'btn-primary'])}>Test</button>
       <div className={cx('description')}>
        <button type='button' className={cxb('btn','btn-default')}>button</button>
         <p>Imagine an ocean of ninjas. Now think of it as a metaphor.<br />

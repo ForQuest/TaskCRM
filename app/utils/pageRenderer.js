@@ -23,11 +23,10 @@ const buildPage = ( headAssets ) => {
         ${headAssets.title.toString()}
         ${headAssets.meta.toString()}
         ${headAssets.link.toString()}
-      </head>
-      <body>
-        <div id="app"></div>
-        ${createTrackingScript(trackingID)}
         <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
+      </head>
+      <body class="${cx('skin-blue')}" id="app">
+      
       </body>
     </html>`;
 };
