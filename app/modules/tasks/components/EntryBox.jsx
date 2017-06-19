@@ -16,7 +16,7 @@ const EntryBox = ({onEntryChange, onEntrySave, topic}) => {
     <div className={cx('entrybox')}>
       <h1 className={cx('header')}>Vote for your top hack idea</h1>
       <TopicTextInput
-        className={cx('input')}
+        className={cx('input','text-black')}
         value={topic}
         placeholder="Suggest a hackday idea . . ."
         onEntryChange={onEntryChange}

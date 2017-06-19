@@ -23,16 +23,16 @@ const TopicItem = ({ text, id, incrementCount, decrementCount, destroyTopic, pau
     <li className={cx('topic-item')} key={id}>
       <span className={cx('topic')}>{text}</span>
       <button
-        className={cx('button', 'increment')}
+        className={cx('btn','badge','btn-default', 'increment')}
         onClick={onIncrement}>+</button>
       <button
-        className={cx('button', 'decrement')}
+        className={cx('btn','badge','btn-default', 'decrement')}
         onClick={onDecrement}>-</button>
       <button
-        className={cx('button', 'destroy')}
+        className={cx('btn','badge','btn-default', 'destroy')}
         onClick={onDestroy}>{String.fromCharCode(215)}</button>
       <button
-        className={cx('button', 'decrement')}
+        className={cx('btn','badge','btn-default', 'decrement')}
         onClick={onStop}>{String.fromCharCode(pauseToggle?9654:9632)}</button>
     </li>
   );

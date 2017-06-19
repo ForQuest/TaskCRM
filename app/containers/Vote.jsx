@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import { Tasks } from 'modules';
 import * as tickEvents from 'actions/time';
-import styles from 'css/bootstrap';
+import styles from 'css/gridComponent';
 
 const cx = classNames.bind(styles);
 
@@ -23,7 +23,7 @@ class Vote extends Component {
     const {newTopic, topics, isAuth, typing, createTopic, destroyTopic, incrementCount, decrementCount, pauseTopic } = this.props;
     
     return (
-      <div className={cx('container')}>
+      <div className={cx('container','glyphicon')}>
         <div className={cx('row')}>
           <div className={cx('col-md-12')}>
             <Tasks.Components.EntryBox topic={newTopic}

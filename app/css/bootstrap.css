@@ -4,7 +4,6 @@
  * Licensed under MIT (https:
  */
 @import "bootstrap/mixins";
-@import "bootstrap/variables";
 @import "bootstrap/normalize";
 @import "bootstrap/print";
 @import "bootstrap/glyphicons";

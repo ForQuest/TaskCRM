@@ -34,7 +34,7 @@ class App extends Component {
     const { auth, children } = this.props;
     if(auth){
       return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper','bg-navy')}>
           <Navigation />
           <Message />
           <div className={cx('container')}>

@@ -14,12 +14,10 @@ const postcssPercentage = require('postcss-percentage');
 
 const autoprefixer = require('autoprefixer');
 
-// const postcssCssnext = require('postcss-cssnext');
-// const postcssMixins = require('postcss-mixins');
-// const postcssColorFunction = require('postcss-color-function');
-// const postcssSimpleVars = require('postcss-simple-vars');
 const postcssReporter = require('postcss-reporter');
 const PATHS = require('../paths');
+
+const vars = require('../../app/css/bootstrap/variables');
 
 module.exports = ({ production = false, browser = false } = {}) => {
   /*
@@ -59,7 +57,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
           postcssMixins(),
           postcssNested(),
           postcssFor(),
-          postcssSimpleVars(),
+          postcssSimpleVars({variables: vars}),
           postcssCalc(),
           postcssMath(),
           postcssPercentage(),

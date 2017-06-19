@@ -4,7 +4,6 @@ import bootstrap from 'css/bootstrap';
 
 const cx = classNames.bind(bootstrap);
 
-const cxb = classNames.bind(styleBootstrap);
 /*
  * Note: This is kept as a container-level component,
  *  i.e. We should keep this as the container that does the data-fetching
