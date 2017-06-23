@@ -11,11 +11,36 @@ import mongoose from 'mongoose';
 /*
  User Schema
  */
+const full_name = new mongoose.Schema({
+    last: String,
+    first: {
+      type: String,
+      required: true 
+    },
+    middle: String
+});
 
 const UserSchema = new mongoose.Schema({
-  username: { type: String, unique: true, lowercase: true },
-  password: String,
-  group: { type: Number, required: true }
+	username: { 
+		type: String, 
+		unique: true, 
+		required: true, 
+		lowercase: true 
+	},
+	password: {
+		type: String,
+		required: true 
+	},
+	group: { 
+		type: mongoose.Schema.Types.ObjectId, 
+		required: true 
+	},
+	name: {
+		type: full_name,
+		required: true 
+	},
+	birthday: Date,
+	avatar: String
 });
 
 function encryptPassword(next) {

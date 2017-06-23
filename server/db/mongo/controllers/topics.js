@@ -10,7 +10,6 @@ export function all(req, res) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');
     }
-
     return res.json(topics);
   });
 }
@@ -98,7 +97,6 @@ export function remove(req, res) {
       console.log('Error on delete topic ID:'+req.params.id);
       return res.status(500).send('We failed to delete for some reason');
     }
-
     return res.status(200).send('Removed Successfully');
   });
 }
