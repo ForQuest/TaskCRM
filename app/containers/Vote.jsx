@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import { Tasks } from 'modules';
 import * as tickEvents from 'actions/time';
-import styles from 'css/gridComponent';
+import styles from 'css/bootstrap';
 
 const cx = classNames.bind(styles);
 

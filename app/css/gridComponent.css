@@ -1,9 +1,0 @@
-/*mixins for grid*/
-@import "bootstrap/mixins/grid";
-@import "bootstrap/mixins/grid-framework";
-@import "bootstrap/mixins/clearfix";
-/* style for grid*/
-@import "bootstrap/grid";
-/*fonts*/
-@import "bootstrap/glyphicons";
-@import "font-awesome/css/font-awesome";

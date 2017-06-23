@@ -54,7 +54,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
       options: {
         plugins: [
           postcssImport({ path: path.resolve(PATHS.app, './css') }),
-          postcssMixins(),
+          postcssMixins({ mixinsDir: path.join('.','app','css','bootstrap', 'mixins')}),
           postcssNested(),
           postcssFor(),
           postcssSimpleVars({variables: vars}),
