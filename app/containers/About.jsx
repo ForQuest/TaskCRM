@@ -22,7 +22,7 @@ const About = () => {
       </div>
       <button className={cx(['btn', 'btn-primary'])}>Test</button>
       <div className={cx('description')}>
-       <button type='button' className={cxb('btn','btn-default')}>button</button>
+       <button type='button' className={cx('btn','btn-default')}>button</button>
         <p>Imagine an ocean of ninjas. Now think of it as a metaphor.<br />
           Seriously, we love good tech. React, redux, scala, Haskell, machine learning, you name it!
         </p>
