@@ -102,7 +102,6 @@
     "method-override": "^2.3.8",
     "mongoose": "^4.9.3",
     "node-libs-browser": "^1.0.0",
-    "node-sass": "^4.5.3",
     "oauth2orize": "^1.5.0",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
