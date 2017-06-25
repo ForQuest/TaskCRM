@@ -44,5 +44,6 @@
 
 /* Admin LTE */
 @import "adminlte/AdminLTE";
+@import "adminlte/plugins/pace";
 /*Font Awesome*/
 @import "font-awesome/css/font-awesome";

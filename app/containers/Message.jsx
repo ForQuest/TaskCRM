@@ -16,11 +16,14 @@ class Message extends Component {
     const { message, type, dismissMessage } = this.props;
 
     return (
-      <div className={cx('message', {
-        show: message && message.length > 0,
-        success: type === 'SUCCESS',
-        error: type === 'ERROR'
-      })} onClick={dismissMessage}>{message}</div>
+      <div className={cx('callout', {
+        hide: !message && !(message.length > 0),
+        'callout-success': type === 'SUCCESS',
+        'callout-danger': type === 'ERROR'
+      })} onClick={dismissMessage} >
+        <h4>{message}</h4>
+        <p>Message successfully printed!</p>
+      </div>
     )
   }
 }

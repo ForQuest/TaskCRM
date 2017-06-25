@@ -11,7 +11,6 @@ export default function promiseMiddleware({ getState, dispatch }) {
 
     if (!promise) return next(action);
     
-    console.log(action);
     const SUCCESS = success || type + '_SUCCESS';
     const REQUEST = type + '_REQUEST';
     const FAILURE = failure || type + '_FAILURE';

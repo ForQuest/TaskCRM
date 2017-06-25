@@ -18,8 +18,9 @@ import * as types from 'types';
  *                          rendering.
  */
 export default function configureStore(initialState, history) {
+  const routerMiddle = routerMiddleware(history);
   // Installs hooks that always keep react-router and redux store in sync
-  const middleware = [thunk, tickMiddleware, requestMiddleware, promiseMiddleware ];
+  const middleware = [routerMiddle, thunk, tickMiddleware, requestMiddleware, promiseMiddleware ];
   let store;
 
   if (isClient && isDebug) {

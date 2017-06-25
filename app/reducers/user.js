@@ -24,6 +24,7 @@ const isWaiting = ( state = false, action ) => {
     case types.PASSWORD_LOGIN_REQUEST:
     case types.REFRESH_LOGIN_REQUEST:
     case types.USER_LOGOUT_REQUEST:
+    case types.GET_TOPICS_REQUEST:
     case types.SIGNUP_USER:
       return true;
     case types.PASSWORD_LOGIN_SUCCESS:
@@ -34,6 +35,7 @@ const isWaiting = ( state = false, action ) => {
     case types.REFRESH_LOGIN_FAILURE:
     case types.SIGNUP_SUCCESS_USER:
     case types.SIGNUP_ERROR_USER:
+    case types.GET_TOPICS_SUCCESS:
       return false;
     default:
       return state;

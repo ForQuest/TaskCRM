@@ -5,9 +5,9 @@ import requireAuthentication from 'components/AuthenticatedComponent';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={requireAuthentication(Vote)} />
+    <IndexRoute component={requireAuthentication(Vote)} name="Главная"/>
     <Route path="login" component={LoginOrRegister} />
-    <Route path="dashboard" component={requireAuthentication(Dashboard)} />
-    <Route path="about" component={requireAuthentication(About)} />
+    <Route path="dashboard" component={requireAuthentication(Dashboard)} name="Панель информации"/>
+    <Route path="about" component={requireAuthentication(About)} name="О нас"/>
   </Route>
 );
