@@ -45,7 +45,7 @@ export function update(req, res) {
   switch (type) {
 
     case 'FULL': 
-      module_worktime.findOneAndUpdate(_id, data, (err) => {
+      module_worktime.findOneAndUpdate({_id}, data, (err) => {
         if (err) { 
           console.log('Error on save module worktime:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -55,7 +55,7 @@ export function update(req, res) {
     break;
 
     case 'USER':
-      module_worktime.findOneAndUpdate(_id, {user}, (err) => {
+      module_worktime.findOneAndUpdate({_id}, {user}, (err) => {
         if (err) {
           console.log('Error on save module worktime:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -65,7 +65,7 @@ export function update(req, res) {
     break;
 
     case 'TIME':
-      module_worktime.findOneAndUpdate(_id, {time}, (err) => {
+      module_worktime.findOneAndUpdate({_id}, {time}, (err) => {
         if (err) {
           console.log('Error on save module worktime:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');

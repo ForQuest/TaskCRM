@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
+import autoIncrement from 'mongoose-auto-increment';
 
 const orders_active = new mongoose.Schema({
 	order_id: {
 		type: Number,
+		default: 0,
 		required: true 
 	},
 	client: { 
@@ -10,14 +12,31 @@ const orders_active = new mongoose.Schema({
 		required: true 
 	},
 	start_time: {
-		type: Date,
+		type: Date, 
+		default: Date.now(), 
 		required: true 
 	},
-	products: [mongoose.Schema.Types.ObjectId],
+	products: {
+		type: [{
+			product_id: {
+				type: mongoose.Schema.Types.ObjectId,
+				required: true 
+			},
+			count: {
+				type: Number,
+				required: true 
+			},
+			collect: [mongoose.Schema.Types.ObjectId]
+		}],
+		required: true
+	},
 	discount: {
 		type: Number,
 		default: 0
 	}
 });
+
+autoIncrement.initialize(mongoose.connection); 
+orders_active.plugin(autoIncrement.plugin, { model: 'OrderId', field: 'order_id', startAt: 1, incrementBy: 1 });
 
 export default mongoose.model('Orders_active', orders_active);

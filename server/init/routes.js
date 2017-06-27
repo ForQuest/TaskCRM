@@ -10,11 +10,11 @@ const topicsController = controllers && controllers.topics;
 const user_groupsController = controllers && controllers.user_groups;
 const productsController = controllers && controllers.products;
 const productCategoryController = controllers && controllers.product_category;
-const orderController = controllers && controllers.orders;
-const order_activeController = controllers && controllers.orders_active;
+const orderController = controllers && controllers.order;
+const order_activeController = controllers && controllers.order_active;
 const moduleController = controllers && controllers.modules;
 const module_worktimeController = controllers && controllers.module_worktime;
-const clientController = controllers && controllers.clients;
+const clientController = controllers && controllers.client;
 
 export default (app) => {
     // app.all('/api/*', passport.authenticate('bearer', { session: false }));

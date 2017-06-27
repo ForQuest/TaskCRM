@@ -47,7 +47,7 @@ export function update(req, res) {
   switch (type) {
 
     case 'FULL': 
-      product.findOneAndUpdate(order_id, data, (err) => {
+      product.findOneAndUpdate({order_id}, data, (err) => {
         if (err) {
           console.log('Error on save product:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
@@ -57,7 +57,7 @@ export function update(req, res) {
     break;
 
     case 'COST':
-      product.findOneAndUpdate(order_id, {cost}, (err) => {
+      product.findOneAndUpdate({order_id}, {cost}, (err) => {
         if (err) {
           console.log('Error on save product:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
@@ -67,7 +67,7 @@ export function update(req, res) {
     break;
 
     case 'TIME':
-      product.findOneAndUpdate(order_id, {time}, (err) => {
+      product.findOneAndUpdate({order_id}, {time}, (err) => {
         if (err) {
           console.log('Error on save product:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
@@ -77,7 +77,7 @@ export function update(req, res) {
     break;
 
     case 'CLIENT':
-      product.findOneAndUpdate(order_id, {client}, (err) => {
+      product.findOneAndUpdate({order_id}, {client}, (err) => {
         if (err) {
           console.log('Error on save product:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
@@ -87,7 +87,7 @@ export function update(req, res) {
     break;
 
     case 'PRODUCTS':
-      product.findOneAndUpdate(order_id, {products}, (err) => {
+      product.findOneAndUpdate({order_id}, {products}, (err) => {
         if (err) {
           console.log('Error on save product:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
@@ -97,7 +97,7 @@ export function update(req, res) {
     break;
       
     case 'DISCOUNT':
-      product.findOneAndUpdate(order_id, {discount}, (err) => {
+      product.findOneAndUpdate({order_id}, {discount}, (err) => {
         if (err) {
           console.log('Error on save product:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');

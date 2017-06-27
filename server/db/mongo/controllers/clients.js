@@ -48,7 +48,7 @@ export function update(req, res) {
   switch (type) {
 
     case 'FULL': 
-      client.findOneAndUpdate(_id, data, (err) => {
+      client.findOneAndUpdate({_id}, data, (err) => {
         if (err) {
           console.log('Error on save client:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -58,7 +58,7 @@ export function update(req, res) {
     break;
 
     case 'CREATE_DATE': 
-      client.findOneAndUpdate(_id, {create_Date}, (err) => {
+      client.findOneAndUpdate({_id}, {create_Date}, (err) => {
         if (err) {
           console.log('Error on save client:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -68,7 +68,7 @@ export function update(req, res) {
     break;
 
     case 'PHONE':
-      client.findOneAndUpdate(_id, {phone}, (err) => {
+      client.findOneAndUpdate({_id}, {phone}, (err) => {
         if (err) {
           console.log('Error on save client:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -78,7 +78,7 @@ export function update(req, res) {
     break;
 
     case 'NAME':
-      client.findOneAndUpdate(_id, {name}, (err) => {
+      client.findOneAndUpdate({_id}, {name}, (err) => {
         if (err) {
           console.log('Error on save client:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -88,7 +88,7 @@ export function update(req, res) {
     break;
 
     case 'BIRTHDAY':
-      client.findOneAndUpdate(_id, {birthday}, (err) => {
+      client.findOneAndUpdate({_id}, {birthday}, (err) => {
         if (err) {
           console.log('Error on save client:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -98,7 +98,7 @@ export function update(req, res) {
     break;
 
     case 'EMAIL':
-      client.findOneAndUpdate(_id, {email}, (err) => {
+      client.findOneAndUpdate({_id}, {email}, (err) => {
         if (err) {
           console.log('Error on save client:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');

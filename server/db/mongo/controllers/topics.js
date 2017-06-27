@@ -47,7 +47,6 @@ export function update(req, res) {
           console.log('Error on save topic ID:'+req.params.id);
           return res.status(500).send('We failed to save for some reason');
         }
-
         return res.status(200).send('Updated successfully');
       });
     break;

@@ -38,14 +38,14 @@ export function update(req, res) {
   const type = req.body.type;
   const name = req.body.name;
   const access = req.body.access;
-  const omit_fields = ['_id', '_v', 'type'];
+  const omit_fields = ['_id', '__v', 'type'];
 
   const data = _.omit(req.body, omit_fields);
-
+  console.log(data);
   switch (type) {
 
     case 'FULL': 
-      User_group.findOneAndUpdate(_id, {data}, (err) => {
+      User_group.findOneAndUpdate({_id}, data, (err) => {
         if (err) {
           console.log('Error on save user group:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -55,7 +55,7 @@ export function update(req, res) {
     break;
 
     case 'NAME':
-      User_group.findOneAndUpdate(_id, { name }, (err) => {
+      User_group.findOneAndUpdate({_id}, { name }, (err) => {
         if (err) {
           console.log('Error on save user group:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -65,7 +65,7 @@ export function update(req, res) {
     break;
 
     case 'ACCESS':
-      User_group.findOneAndUpdate(_id, {access}, (err) => {
+      User_group.findOneAndUpdate({_id}, {access}, (err) => {
         if (err) {
           console.log('Error on save user group:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');

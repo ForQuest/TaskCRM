@@ -1,17 +1,15 @@
 import mongoose from 'mongoose';
 
-const full_name = new mongoose.Schema({
-    last: String,
-    first: {
-      type: String,
-      required: true 
-    },
-    middle: String
-});
-
 const clients = new mongoose.Schema({
     name: {
-      type: full_name,
+      type: {
+        last: String,
+        first: {
+          type: String,
+          required: true 
+        },
+        middle: String
+      },
       required: true 
     },
     phone: Number,

@@ -1,21 +1,21 @@
 import mongoose from 'mongoose';
 
-const exec_time = new mongoose.Schema({
-	start: Date,
-	stop: Date
-});
+// const exec_time = new mongoose.Schema({
+// 	start: Date,
+// 	stop: Date
+// });
 
-const product = new mongoose.Schema({
-	product_id: {
-		type: mongoose.Schema.Types.ObjectId,
-		required: true 
-	},
-	count: {
-		type: Number,
-		required: true 
-	},
-	attr: [mongoose.Schema.Types.ObjectId]
-});
+// const product = new mongoose.Schema({
+// 	product_id: {
+// 		type: mongoose.Schema.Types.ObjectId,
+// 		required: true 
+// 	},
+// 	count: {
+// 		type: Number,
+// 		required: true 
+// 	},
+// 	attr: [mongoose.Schema.Types.ObjectId]
+// });
 
 const orders = new mongoose.Schema({
 	order_id: {
@@ -27,15 +27,28 @@ const orders = new mongoose.Schema({
 		required: true
 	},
 	time: {
-		type: exec_time,
+		type: {
+			start: Date,
+			stop: Date
+		},
 		required: true
 	},
 	client: { 
 		type: mongoose.Schema.Types.ObjectId,
-		required: true 
+		required: true   
 	},
 	products: {
-		type: [product],
+		type: [{
+			product_id: {
+				type: mongoose.Schema.Types.ObjectId,
+				required: true 
+			},
+			count: {
+				type: Number,
+				required: true 
+			},
+			collect: [mongoose.Schema.Types.ObjectId]
+		}],
 		required: true
 	},
 	discount: {

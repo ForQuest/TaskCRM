@@ -45,7 +45,7 @@ export function update(req, res) {
   switch (type) {
 
     case 'FULL': 
-      product_category.findOneAndUpdate(_id, data, (err) => {
+      product_category.findOneAndUpdate({_id}, data, (err) => {
         if (err) {
           console.log('Error on save product category:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -55,7 +55,7 @@ export function update(req, res) {
     break;
 
     case 'NAME':
-      product_category.findOneAndUpdate(_id, {name}, (err) => {
+      product_category.findOneAndUpdate({_id}, {name}, (err) => {
         if (err) {
           console.log('Error on save product category:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
@@ -65,7 +65,7 @@ export function update(req, res) {
     break;
 
     case 'DESC':
-      product_category.findOneAndUpdate(_id, {desc}, (err) => {
+      product_category.findOneAndUpdate({_id}, {desc}, (err) => {
         if (err) {
           console.log('Error on save product category:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 // Client
 
-export const ClientModel = mongoose.model('Client', new mongoose.Schema({
+export const ClientModel = mongoose.model('OAuth_Client', new mongoose.Schema({
     name: {
         type: String,
         unique: true,
@@ -21,7 +21,7 @@ export const ClientModel = mongoose.model('Client', new mongoose.Schema({
 
 // AccessToken
 
-export const AccessTokenModel = mongoose.model('AccessToken', new mongoose.Schema({
+export const AccessTokenModel = mongoose.model('OAuth_AccessToken', new mongoose.Schema({
     userId: {
         type: String,
         required: true
@@ -43,7 +43,7 @@ export const AccessTokenModel = mongoose.model('AccessToken', new mongoose.Schem
 
 // RefreshToken
 
-export const RefreshTokenModel = mongoose.model('RefreshToken', new mongoose.Schema({
+export const RefreshTokenModel = mongoose.model('OAuth_RefreshToken', new mongoose.Schema({
     userId: {
         type: String,
         required: true
