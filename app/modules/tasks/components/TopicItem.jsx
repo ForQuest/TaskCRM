@@ -20,20 +20,22 @@ const TopicItem = ({ text, id, incrementCount, decrementCount, destroyTopic, pau
   };
 
   return (
-    <li className={cx('topic-item')} key={id}>
-      <span className={cx('topic')}>{text}</span>
-      <button
-        className={cx('btn','badge','btn-default', 'increment')}
-        onClick={onIncrement}>+</button>
-      <button
-        className={cx('btn','badge','btn-default', 'decrement')}
-        onClick={onDecrement}>-</button>
-      <button
-        className={cx('btn','badge','btn-default', 'destroy')}
-        onClick={onDestroy}>{String.fromCharCode(215)}</button>
-      <button
-        className={cx('btn','badge','btn-default', 'decrement')}
-        onClick={onStop}>{String.fromCharCode(pauseToggle?9654:9632)}</button>
+    <li className={cx('topic-item', 'row')} key={id}>
+      <span className={cx('topic', 'col-xs-6')}>{text}</span>
+      <div className={cx('col-xs-6')}>
+        <button
+          className={cx('btn','badge','btn-default', 'increment')}
+          onClick={onIncrement}>+</button>
+        <button
+          className={cx('btn','badge','btn-default', 'decrement')}
+          onClick={onDecrement}>-</button>
+        <button
+          className={cx('btn','badge','btn-default', 'destroy')}
+          onClick={onDestroy}>{String.fromCharCode(215)}</button>
+        <button
+          className={cx('btn','badge','btn-default', 'decrement')}
+          onClick={onStop}>{String.fromCharCode(pauseToggle?9654:9632)}</button>
+      </div>
     </li>
   );
 };

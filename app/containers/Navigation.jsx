@@ -16,7 +16,7 @@ const Navigation = ({ user, logOut }) => {
 
         <a href="index2.html" className={cx('logo')}>
           <span className={cx('logo-mini')}><b>A</b>LT</span>
-          <span className={cx('logo-lg')}><b>Admin</b>LTE</span>
+          <span className={cx('logo-lg')}><b>Task</b>CRM</span>
         </a>
 
         <nav className={cx('navbar','navbar-static-top')} role="navigation">
@@ -103,7 +103,7 @@ const Navigation = ({ user, logOut }) => {
               <li className={cx('dropdown','user','user-menu')}>
                 <a href="#" className={cx('dropdown-toggle')} data-toggle="dropdown">
                   <img src={user2} className={cx('user-image')} alt="User Image"/>
-                  <span className={cx('hidden-xs')}>Alexander Pierce</span>
+                  <span className={cx('hidden-xs')}>Василий Пупкин</span>
                 </a>
                 <ul className={cx('dropdown-menu')}>
                   <li className={cx('user-header')}>

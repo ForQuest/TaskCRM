@@ -19,13 +19,13 @@ const ASide = ({ user, logOut }) => {
               <img src={user2} className={cx('img-circle')} alt="User Image" />
             </div>
             <div className={cx('pull-left','info')}>
-              <p>Alexander Pierce</p>
-              <a href="#"><i className={cx('fa','fa-circle','text-success')}></i> Online</a>
+              <p>Василий Пупкин</p>
+              <a href="#"><i className={cx('fa','fa-circle','text-success')}></i> Онлайн</a>
             </div>
           </div>
           <form action="#" method="get" className={cx('sidebar-form')}>
             <div className={cx('input-group')}>
-              <input type="text" name="q" className={cx('form-control')} placeholder="Search..." />
+              <input type="text" name="q" className={cx('form-control')} placeholder="Поиск..." />
                 <span className={cx('input-group-btn')}>
                   <button type="submit" name="search" id="search-btn" className={cx('btn','btn-flat')}>
                     <i className={cx('fa','fa-search')}></i>

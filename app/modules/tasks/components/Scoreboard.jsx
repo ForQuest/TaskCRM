@@ -22,10 +22,10 @@ class Scoreboard extends Component {
       date = date.toFormatString('%H:%M:%S');
       
       return (
-        <li className={cx('item')} key={key}>
-          <span className={cx('topic')}>{topic.text}</span>
-          <span className={cx('count')}>{days+date}</span>
-          <span className={cx('count')}>{topic.count}</span>
+        <li className={cx('item', 'row')} key={key}>
+          <span className={cx('topic', 'col-xs-4')}>{topic.text}</span>
+          <span className={cx('count', 'col-xs-4', 'text-center')}>{days+date}</span>
+          <span className={cx('count', 'col-xs-4')}>{topic.count}</span>
         </li>);
     });
   }
