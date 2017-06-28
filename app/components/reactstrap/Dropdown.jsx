@@ -25,7 +25,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  isOpen: false,
   tag: 'div'
 };
 
@@ -52,12 +51,15 @@ class Dropdown extends React.Component {
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeEvents = this.removeEvents.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    }
   }
 
   getChildContext() {
     return {
-      toggle: this.props.toggle,
-      isOpen: this.props.isOpen
+      toggle: this.toggle,
+      isOpen: this.props.isOpen?this.props.isOpen:this.state.isOpen
     };
   }
 
@@ -66,7 +68,7 @@ class Dropdown extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.isOpen !== prevProps.isOpen) {
+    if ((this.props.isOpen?this.props.isOpen:this.state.isOpen) !== prevProps.isOpen) {
       this.handleProps();
     }
   }
@@ -130,7 +132,7 @@ class Dropdown extends React.Component {
       return;
     }
 
-    if (this.props.isOpen) {
+    if (this.props.isOpen || this.state.isOpen) {
       this.addEvents();
     } else {
       this.removeEvents();
@@ -141,8 +143,10 @@ class Dropdown extends React.Component {
     if (this.props.disabled) {
       return e && e.preventDefault();
     }
-
-    return this.props.toggle();
+    if (this.props.toggle) return this.props.toggle();
+    else  this.setState({
+      isOpen: !this.state.isOpen
+    });
   }
 
   renderChildren() {
@@ -169,17 +173,16 @@ class Dropdown extends React.Component {
       group,
       size,
       tag: Tag,
-      isOpen,
       ...attributes
-    } = omit(this.props, ['toggle', 'tether']);
+    } = omit(this.props, ['toggle', 'tether', 'isOpen']);
 
     const classes = mapToCssModules(classNames(
       className,
       {
         'btn-group': group,
         [`btn-group-${size}`]: !!size,
-        dropdown: !group,
-        show: isOpen,
+        dropdown: !dropup,
+        open: this.props.isOpen || this.state.isOpen,
         dropup: dropup
       }
     ), cssModule);

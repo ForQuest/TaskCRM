@@ -13,7 +13,10 @@ import CardText from 'components/reactstrap/CardText';
 import CardBlock from 'components/reactstrap/CardBlock';
 import CardTitle from 'components/reactstrap/CardTitle';
 import CardSubtitle from 'components/reactstrap/CardSubtitle';
-import Progress from 'components/reactstrap/Progress';
+import DropdownToggle from 'components/reactstrap/DropdownToggle';
+import DropdownMenu from 'components/reactstrap/DropdownMenu';
+import DropdownItem from 'components/reactstrap/DropdownItem';
+import Dropdown from 'components/reactstrap/Dropdown';
 
 
 const cx = classNames.bind(bootstrap);
@@ -44,21 +47,21 @@ const About = () => {
               <tbody>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>Илья</td>
+                  <td>Синицын</td>
+                  <td>@lier</td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
+                  <td>Михаил</td>
+                  <td>Чепкасов</td>
                   <td>@fat</td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
+                  <td>Юран</td>
+                  <td>Ломанов</td>
+                  <td>@younggod</td>
                 </tr>
               </tbody>
             </Table>
@@ -75,26 +78,18 @@ const About = () => {
             </Card>
           </Col>
           <Col md="4">
-             <div>
-                <div className="text-center">0%</div>
-                <Progress />
-                <div className="text-center">25%</div>
-                <Progress value="25" />
-                <div className="text-center">50%</div>
-                <Progress value={50} />
-                <div className="text-center">75%</div>
-                <Progress value={75} />
-                <div className="text-center">100%</div>
-                <Progress value="100" />
-                <div className="text-center">Multiple bars</div>
-                <Progress multi>
-                  <Progress bar value="15" />
-                  <Progress bar color="success" value="30" />
-                  <Progress bar color="info" value="25" />
-                  <Progress bar color="warning" value="20" />
-                  <Progress bar color="danger" value="5" />
-                </Progress>
-              </div>
+                <Dropdown>
+                  <DropdownToggle caret>
+                    Dropdown
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem header>Header</DropdownItem>
+                    <DropdownItem disabled>Action</DropdownItem>
+                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem>Another Action</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
           </Col>
           <Col md="1"></Col>
         </Row>

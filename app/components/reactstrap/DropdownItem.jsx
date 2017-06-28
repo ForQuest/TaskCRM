@@ -21,7 +21,7 @@ const contextTypes = {
 };
 
 const defaultProps = {
-  tag: 'button',
+  tag: 'a',
   toggle: true
 };
 
@@ -72,7 +72,13 @@ class DropdownItem extends React.Component {
         disabled: props.disabled,
         'dropdown-item': !divider && !header,
         'dropdown-header': header,
-        'dropdown-divider': divider
+        'divider': divider
+      }
+    ), cssModule);
+
+    const classesDivider = mapToCssModules(classNames(
+      {
+        'divider': divider
       }
     ), cssModule);
 
@@ -87,13 +93,17 @@ class DropdownItem extends React.Component {
     }
 
     return (
-      <Tag
-        type={(Tag === 'button' && (props.onClick || this.props.toggle)) ? 'button' : undefined}
-        {...props}
-        tabIndex={tabIndex}
-        className={classes}
-        onClick={this.onClick}
-      />
+      <li className={classesDivider}>
+      { !divider ? (
+              <Tag
+                type={(Tag === 'button' && (props.onClick || this.props.toggle)) ? 'button' : undefined}
+                {...props}
+                tabIndex={tabIndex}
+                className={classes}
+                onClick={this.onClick}
+              />
+            ) : null}
+      </li>
     );
   }
 }

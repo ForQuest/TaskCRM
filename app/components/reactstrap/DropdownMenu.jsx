@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div',
+  tag: 'ul',
 };
 
 const contextTypes = {
