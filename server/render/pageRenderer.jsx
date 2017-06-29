@@ -8,7 +8,6 @@ import Helmet from 'react-helmet';
 import classNames from 'classnames/bind';
 import bootstrap from 'css/adminlte/AdminLTE.css';
 
-const cx = classNames.bind(bootstrap);
 
 const createTrackingScript = trackingID => 
 `<script>
@@ -29,7 +28,7 @@ const buildPage = ( headAssets ) => {
         ${headAssets.meta.toString()}
         ${headAssets.link.toString()}
       </head>
-      <body class="${cx('skin-blue')}">
+      <body>
         <div id="app"></div>
         ${createTrackingScript(trackingID)}
         <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>

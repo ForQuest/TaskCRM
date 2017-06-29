@@ -6,7 +6,8 @@ import { logOut } from 'actions/users';
 import user2 from 'images/user2-160x160.jpg';
 import classNames from 'classnames/bind';
 import styles from 'css/bootstrap';
-import { Navbar, NavbarToggler, NavbarBrand, Collapse, Nav, NavItem, NavLink } from 'reactstrap';
+import { Navbar, Nav, Dropdown, MenuItem, Image, Row, Col, Button } from 'components/react-bootstrap';
+import NavDropdown  from 'components/react-bootstrap/NavDropdown';
 
 const cx = classNames.bind(styles);
 
@@ -18,26 +19,25 @@ const Navigation = ({ user, logOut }) => {
           <span className={cx('logo-mini')}><b>A</b>LT</span>
           <span className={cx('logo-lg')}><b>Admin</b>LTE</span>
         </a>
-
         <nav className={cx('navbar','navbar-static-top')} role="navigation">
           <a href="#" className={cx('sidebar-toggle')} data-toggle="offcanvas" role="button">
             <span className={cx('sr-only')}>Toggle navigation</span>
           </a>
           <div className={cx('navbar-custom-menu')}>
-            <ul className={cx('nav','navbar-nav')}>
-              <li className={cx('dropdown','messages-menu')}>
-                <a href="#" className={cx('dropdown-toggle')} data-toggle="dropdown">
+            <Nav className={cx('navbar-nav')}>
+              <Dropdown id="messages-menu" componentClass="li" className={cx('messages-menu')}>
+                <Dropdown.Toggle componentClass="a" useAnchor noCaret>
                   <i className={cx('fa','fa-envelope-o')}></i>
                   <span className={cx('label','label-success')}>4</span>
-                </a>
-                <ul className={cx('dropdown-menu')}>
-                  <li className={cx('header')}>You have 4 messages</li>
-                  <li>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <MenuItem header>You have 4 messages</MenuItem>
+                  <MenuItem content>
                     <ul className={cx('menu')}>
                       <li>
                         <a href="#">
                           <div className={cx('pull-left')}>
-                            <img src={user2} className={cx('img-circle')} alt="User Image"/>
+                            <Image src={user2} circle alt="User Image"/>
                           </div>
                           <h4>
                             Support Team
@@ -47,19 +47,18 @@ const Navigation = ({ user, logOut }) => {
                         </a>
                       </li>
                     </ul>
-                  </li>
-                  <li className={cx('footer')}><a href="#">See All Messages</a></li>
-                </ul>
-              </li>
-
-              <li className={cx('dropdown','notifications-menu')}>
-                <a href="#" className={cx('dropdown-toggle')} data-toggle="dropdown">
+                  </MenuItem>
+                  <MenuItem className={cx('footer')}>See All Messages</MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+              <Dropdown id="notifications-menu" componentClass="li" className={cx('notifications-menu')}>
+                <Dropdown.Toggle componentClass="a" useAnchor noCaret>
                   <i className={cx('fa','fa-bell-o')}></i>
                   <span className={cx('label','label-warning')}>10</span>
-                </a>
-                <ul className={cx('dropdown-menu')}>
-                  <li className={cx('header')}>You have 10 notifications</li>
-                  <li>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <MenuItem header>You have 10 notifications</MenuItem>
+                  <MenuItem content>
                     <ul className={cx('menu')}>
                       <li>
                         <a href="#">
@@ -67,18 +66,18 @@ const Navigation = ({ user, logOut }) => {
                         </a>
                       </li>
                     </ul>
-                  </li>
-                  <li className={cx('footer')}><a href="#">View all</a></li>
-                </ul>
-              </li>
-              <li className={cx('dropdown','tasks-menu')}>
-                <a href="#" className={cx('dropdown-toggle')} data-toggle="dropdown">
+                  </MenuItem>
+                  <MenuItem className={cx('footer')}>View all</MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+              <Dropdown id="tasks-menu" componentClass="li" className={cx('tasks-menu')}>
+                <Dropdown.Toggle componentClass="a" useAnchor noCaret>
                   <i className={cx('fa','fa-flag-o')}></i>
                   <span className={cx('label','label-danger')}>9</span>
-                </a>
-                <ul className={cx('dropdown-menu')}>
-                  <li className={cx('header')}>You have 9 tasks</li>
-                  <li>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <MenuItem header>You have 9 tasks</MenuItem>
+                  <MenuItem content>
                     <ul className={cx('menu')}>
                       <li>
                         <a href="#">
@@ -94,53 +93,48 @@ const Navigation = ({ user, logOut }) => {
                         </a>
                       </li>
                     </ul>
-                  </li>
-                  <li className={cx('footer')}>
-                    <a href="#">View all tasks</a>
-                  </li>
-                </ul>
-              </li>
-              <li className={cx('dropdown','user','user-menu')}>
-                <a href="#" className={cx('dropdown-toggle')} data-toggle="dropdown">
-                  <img src={user2} className={cx('user-image')} alt="User Image"/>
+                  </MenuItem>
+                  <MenuItem className={cx('footer')}>View all tasks</MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+              <Dropdown id="user-menu" componentClass="li" className={cx('user','user-menu')}>
+                <Dropdown.Toggle componentClass="a" useAnchor noCaret>
+                  <Image src={user2} className={cx('user-image')} alt="User Image"/>
                   <span className={cx('hidden-xs')}>Alexander Pierce</span>
-                </a>
-                <ul className={cx('dropdown-menu')}>
-                  <li className={cx('user-header')}>
-                    <img src={user2} className={cx('img-circle')} alt="User Image"/>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <MenuItem content className={cx('user-header')}>
+                    <Image src={user2} circle alt="User Image"/>
 
                     <p>
                       Alexander Pierce - Web Developer
                       <small>Member since Nov. 2012</small>
                     </p>
-                  </li>
-                  <li className={cx('user-body')}>
-                    <div className={cx('row')}>
-                      <div className={cx('col-xs-4','text-center')}>
+                  </MenuItem>
+                  <MenuItem content className={cx('user-body')}>
+                    <Row>
+                      <Col xs={4} className={cx('text-center')}>
                         <a href="#">Followers</a>
-                      </div>
-                      <div className={cx('col-xs-4','text-center')}>
+                      </Col>
+                      <Col xs={4} className={cx('text-center')}>
                         <a href="#">Sales</a>
-                      </div>
-                      <div className={cx('col-xs-4','text-center')}>
+                      </Col>
+                      <Col xs={4} className={cx('text-center')}>
                         <a href="#">Friends</a>
-                      </div>
-                    </div>
-                  </li>
-                  <li className={cx('user-footer')}>
+                      </Col>
+                    </Row>
+                  </MenuItem>
+                  <MenuItem content className={cx('user-footer')}>
                     <div className={cx('pull-left')}>
-                      <a href="#" className={cx('btn','btn-default','btn-flat')}>Profile</a>
+                      <Button className={cx('btn-flat')}>Profile</Button>
                     </div>
                     <div className={cx('pull-right')}>
-                      <a href="#" className={cx('btn','btn-default','btn-flat')}>Sign out</a>
+                      <Button className={cx('btn-flat')}>Sign out</Button>
                     </div>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#" data-toggle="control-sidebar"><i className={cx('fa','fa-gears')}></i></a>
-              </li>
-            </ul>
+                  </MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav>
           </div>
         </nav>
       </header>

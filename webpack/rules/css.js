@@ -43,7 +43,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
     {
       loader: embedCssInBundle ? 'css-loader' : 'css-loader/locals',
       options: {
-        localIndentName,
+        localIdentName: '[local]',
         sourceMap: true,
         modules: true,
         importLoaders: 1

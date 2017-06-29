@@ -6,7 +6,6 @@ import { logOut } from 'actions/users';
 import user2 from 'images/user2-160x160.jpg';
 import classNames from 'classnames/bind';
 import styles from 'css/bootstrap';
-import { Navbar, NavbarToggler, NavbarBrand, Collapse } from 'reactstrap';
 
 const cx = classNames.bind(styles);
 

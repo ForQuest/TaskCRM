@@ -44,7 +44,7 @@ module.exports = function(config) {
             // Reason why we put this here instead of babelrc
             // https://github.com/gaearon/react-transform-hmr/issues/5#issuecomment-142313637
             query: {
-              'presets': ['es2015', 'react', 'stage-0'],
+              'presets': ['es2015', 'react', 'stage-0', 'stage-1'],
               'plugins': [
                 'transform-react-remove-prop-types',
                 'transform-react-constant-elements',
