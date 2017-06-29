@@ -12,6 +12,8 @@ const clients = new mongoose.Schema({
       },
       required: true 
     },
+    active_orders: [mongoose.Schema.Types.ObjectId],
+    orders: [mongoose.Schema.Types.ObjectId],
     phone: Number,
     email: String,
     birthday: Date,

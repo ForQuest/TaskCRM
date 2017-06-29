@@ -41,7 +41,7 @@ export function update(req, res) {
   const name = req.body.name;
   const birthday = req.body.birthday;
   const email = req.body.email;
-  const omit_fields = ['_id', '_v', 'type'];
+  const omit_fields = ['_id', '__v', 'type'];
 
   const data = _.omit(req.body, omit_fields);
   

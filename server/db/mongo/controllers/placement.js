@@ -1,18 +1,18 @@
-import User_group from '../models/user_groups';
+import placement from '../models/placement';
 import _ from 'lodash';
 
 export function all(req, res) {
-  User_group.find({}).exec((err, user_groups) => {
+  placement.find({}).exec((err, placements) => {
     if (err) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');
     }
-    return res.json(user_groups);
+    return res.json(placements);
   });
 }
 
 export function add(req, res) {
-  User_group.create(req.body, (err) => {
+  placement.create(req.body, (err) => {
     if (err) {
       console.log(err);
       return res.status(400).send(err);
@@ -24,50 +24,50 @@ export function add(req, res) {
 
 export function remove(req, res) {
   const query = { _id: req.body._id};
-  User_group.findOneAndRemove(query, (err) => {
+  placement.findOneAndRemove(query, (err) => {
     if (err) {
-      console.log('Error on delete user group:'+req.body._id);
-      return res.status(500).send('We failed to delete for some reason');
+      console.log('Error on delete placement ID:'+ req.body._id);
+      return res.status(500).send('We failed to delete for some reason'); 
     }
     return res.status(200).send('Removed Successfully');
   });
 }
 
 export function update(req, res) {
-  const _id = req.body._id;
+  const _id = req.body._id; 
   const type = req.body.type;
   const name = req.body.name;
-  const access = req.body.access;
+  const desc = req.body.desc;
   const omit_fields = ['_id', '__v', 'type'];
 
   const data = _.omit(req.body, omit_fields);
-  console.log(data);
+  
   switch (type) {
 
     case 'FULL': 
-      User_group.findOneAndUpdate({_id}, data, (err) => {
+      placement.findOneAndUpdate({_id}, data, (err) => {
         if (err) {
-          console.log('Error on save user group:'+ req.body._id);
+          console.log('Error on save placement:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
         }
         return res.status(200).send('Updated successfully');
       });
     break;
 
-    case 'NAME':
-      User_group.findOneAndUpdate({_id}, { name }, (err) => {
+    case 'NAME': 
+      placement.findOneAndUpdate({_id}, {name}, (err) => {
         if (err) {
-          console.log('Error on save user group:'+ req.body._id);
+          console.log('Error on save placement:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
         }
         return res.status(200).send('Updated successfully');
       });
     break;
 
-    case 'ACCESS':
-      User_group.findOneAndUpdate({_id}, {access}, (err) => {
+    case 'DESC':
+      placement.findOneAndUpdate({_id}, {desc}, (err) => {
         if (err) {
-          console.log('Error on save user group:'+ req.body._id);
+          console.log('Error on save placement:'+ req.body._id);
           return res.status(500).send('We failed to save for some reason');
         }
         return res.status(200).send('Updated successfully');
@@ -81,8 +81,8 @@ export function update(req, res) {
 }
 
 export default {
-  all,
   add,
+  all,
   update,
   remove
 };

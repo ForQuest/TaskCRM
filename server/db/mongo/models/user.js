@@ -11,14 +11,6 @@ import mongoose from 'mongoose';
 /*
  User Schema
  */
-const full_name = new mongoose.Schema({
-    last: String,
-    first: {
-      type: String,
-      required: true 
-    },
-    middle: String
-});
 
 const UserSchema = new mongoose.Schema({
 	username: { 
@@ -36,7 +28,14 @@ const UserSchema = new mongoose.Schema({
 		required: true 
 	},
 	name: {
-		type: full_name,
+		type: {
+      last: String,
+      first: {
+        type: String,
+        required: true 
+      },
+      middle: String
+    },
 		required: true 
 	},
 	birthday: Date,

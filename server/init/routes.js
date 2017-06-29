@@ -12,9 +12,10 @@ const productsController = controllers && controllers.products;
 const productCategoryController = controllers && controllers.product_category;
 const orderController = controllers && controllers.order;
 const order_activeController = controllers && controllers.order_active;
-const moduleController = controllers && controllers.modules;
+const moduleController = controllers && controllers.module;
 const module_worktimeController = controllers && controllers.module_worktime;
 const clientController = controllers && controllers.client;
+const placementController = controllers && controllers.placement;
 
 export default (app) => {
     // app.all('/api/*', passport.authenticate('bearer', { session: false }));
@@ -36,7 +37,7 @@ export default (app) => {
     app.put('/api/user_groups/update', user_groupsController.update);
     app.get('/api/user_groups/all', user_groupsController.all);
   } else { 
-    console.warn(unsupportedMessage('user_groups routes'));
+    console.warn(unsupportedMessage('user groups routes'));
   }
 
   if (productsController) { 
@@ -69,7 +70,6 @@ export default (app) => {
   if (order_activeController) {
     app.post('/api/orders_active/add', order_activeController.add);
     app.post('/api/orders_active/complited', order_activeController.complited);
-    app.delete('/api/orders_active/remove', order_activeController.remove);
     app.put('/api/orders_active/update', order_activeController.update);
     app.get('/api/orders_active/all', order_activeController.all);
   } else { 
@@ -101,6 +101,15 @@ export default (app) => {
     app.get('/api/clients/all', clientController.all);
   } else { 
     console.warn(unsupportedMessage('clients routes'));  
+  }
+
+  if (placementController) {
+    app.post('/api/placement/add', placementController.add);
+    app.delete('/api/placement/remove', placementController.remove);
+    app.put('/api/placement/update', placementController.update);
+    app.get('/api/placement/all', placementController.all);
+  } else { 
+    console.warn(unsupportedMessage('placement routes'));  
   }
 
   // if (passportConfig && passportConfig.google) {

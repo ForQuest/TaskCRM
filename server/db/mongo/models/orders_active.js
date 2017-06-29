@@ -33,6 +33,11 @@ const orders_active = new mongoose.Schema({
 	discount: {
 		type: Number,
 		default: 0
+	},
+	placement: mongoose.Schema.Types.ObjectId,
+	status: {
+		type: String,
+		default: "Active"
 	}
 });
 

@@ -9,8 +9,9 @@ import order_active from './orders_active';
 import module from './modules';
 import module_worktime from './module_worktime';
 import client from './clients';
+import placement from './placement';
 
-export { topics, users, oauth, user_groups, products, product_category, order, module, module_worktime, client };
+export { topics, users, oauth, user_groups, products, product_category, order, module, module_worktime, client, placement };
 
 export default {
   topics,
@@ -23,5 +24,6 @@ export default {
   order_active,
   module,
   module_worktime,
-  client
+  client,
+  placement
 };

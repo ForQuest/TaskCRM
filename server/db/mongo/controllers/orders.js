@@ -11,7 +11,8 @@ export function all(req, res) {
   });
 }
 
-export function add(req, res) {
+export function add(req, res)
+ {
   order.create(req.body, (err) => {
     if (err) {
       console.log(err);
@@ -23,12 +24,13 @@ export function add(req, res) {
 
 export function remove(req, res) {
   const query = { order_id: req.body.order_id};
-  order.findOneAndRemove(query, (err) => {
+  const status = "Deleted";
+  order.findOneAndUpdate(query, {status}, (err) => {
     if (err) {
-      console.log('Error on delete order ID:'+ req.body.order_id);
-      return res.status(500).send('We failed to delete for some reason'); 
+      console.log('Error on delete order:'+ req.body.order_id);
+      return res.status(500).send('We failed to delete for some reason');
     }
-    return res.status(200).send('Removed Successfully');
+    return res.status(200).send('Deleted successfully');
   });
 }
 
@@ -40,16 +42,16 @@ export function update(req, res) {
   const client = req.body.client;
   const products = req.body.products;
   const discount = req.body.discount;
-  const omit_fields = ['order_id', '_v', 'req_type'];
+  const omit_fields = ['_id', '__v', 'type'];
 
   const data = _.omit(req.body, omit_fields);
 
   switch (type) {
 
     case 'FULL': 
-      product.findOneAndUpdate({order_id}, data, (err) => {
+      order.findOneAndUpdate({order_id}, data, (err) => {
         if (err) {
-          console.log('Error on save product:'+ req.body.order_id);
+          console.log('Error on save order:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
         }
         return res.status(200).send('Updated successfully');
@@ -57,9 +59,9 @@ export function update(req, res) {
     break;
 
     case 'COST':
-      product.findOneAndUpdate({order_id}, {cost}, (err) => {
+      order.findOneAndUpdate({order_id}, {cost}, (err) => {
         if (err) {
-          console.log('Error on save product:'+ req.body.order_id);
+          console.log('Error on save order:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
         }
         return res.status(200).send('Updated successfully');
@@ -67,9 +69,9 @@ export function update(req, res) {
     break;
 
     case 'TIME':
-      product.findOneAndUpdate({order_id}, {time}, (err) => {
+      order.findOneAndUpdate({order_id}, {time}, (err) => {
         if (err) {
-          console.log('Error on save product:'+ req.body.order_id);
+          console.log('Error on save order:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
         }
         return res.status(200).send('Updated successfully');
@@ -77,9 +79,9 @@ export function update(req, res) {
     break;
 
     case 'CLIENT':
-      product.findOneAndUpdate({order_id}, {client}, (err) => {
+      order.findOneAndUpdate({order_id}, {client}, (err) => {
         if (err) {
-          console.log('Error on save product:'+ req.body.order_id);
+          console.log('Error on save order:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
         }
         return res.status(200).send('Updated successfully');
@@ -87,9 +89,9 @@ export function update(req, res) {
     break;
 
     case 'PRODUCTS':
-      product.findOneAndUpdate({order_id}, {products}, (err) => {
+      order.findOneAndUpdate({order_id}, {products}, (err) => {
         if (err) {
-          console.log('Error on save product:'+ req.body.order_id);
+          console.log('Error on save order:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
         }
         return res.status(200).send('Updated successfully');
@@ -97,9 +99,9 @@ export function update(req, res) {
     break;
       
     case 'DISCOUNT':
-      product.findOneAndUpdate({order_id}, {discount}, (err) => {
+      order.findOneAndUpdate({order_id}, {discount}, (err) => {
         if (err) {
-          console.log('Error on save product:'+ req.body.order_id);
+          console.log('Error on save order:'+ req.body.order_id);
           return res.status(500).send('We failed to save for some reason');
         }
         return res.status(200).send('Updated successfully');
