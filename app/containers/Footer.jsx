@@ -9,9 +9,9 @@ class Footer extends Component {
     return (
       <footer className={cx('main-footer')}>
         <div className={cx('pull-right','hidden-xs')}>
-          Anything you want
+          Заведение "Лофт 3 Этаж"
         </div>
-        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+        <strong>TaskCRM &copy; 2017 <a href="#">ForQuest LLC.</a>.</strong> All rights reserved.
       </footer>
     );
   }

@@ -17,7 +17,7 @@ const Navigation = ({ user, logOut }) => {
 
         <a href="index2.html" className={cx('logo')}>
           <span className={cx('logo-mini')}><b>A</b>LT</span>
-          <span className={cx('logo-lg')}><b>Admin</b>LTE</span>
+          <span className={cx('logo-lg')}><b>Task</b>CRM</span>
         </a>
         <nav className={cx('navbar','navbar-static-top')} role="navigation">
           <a href="#" className={cx('sidebar-toggle')} data-toggle="offcanvas" role="button">
@@ -100,36 +100,36 @@ const Navigation = ({ user, logOut }) => {
               <Dropdown id="user-menu" componentClass="li" className={cx('user','user-menu')}>
                 <Dropdown.Toggle componentClass="a" useAnchor noCaret>
                   <Image src={user2} className={cx('user-image')} alt="User Image"/>
-                  <span className={cx('hidden-xs')}>Alexander Pierce</span>
+                  <span className={cx('hidden-xs')}>Василий Пупкин</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <MenuItem content className={cx('user-header')}>
                     <Image src={user2} circle alt="User Image"/>
 
                     <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012</small>
+                      Василий Пупкин
+                      <small>Администратор</small>
                     </p>
                   </MenuItem>
                   <MenuItem content className={cx('user-body')}>
                     <Row>
                       <Col xs={4} className={cx('text-center')}>
-                        <a href="#">Followers</a>
+                        <a href="#">Тест</a>
                       </Col>
                       <Col xs={4} className={cx('text-center')}>
-                        <a href="#">Sales</a>
+                        <a href="#">Тест</a>
                       </Col>
                       <Col xs={4} className={cx('text-center')}>
-                        <a href="#">Friends</a>
+                        <a href="#">Тест</a>
                       </Col>
                     </Row>
                   </MenuItem>
                   <MenuItem content className={cx('user-footer')}>
                     <div className={cx('pull-left')}>
-                      <Button className={cx('btn-flat')}>Profile</Button>
+                      <Button className={cx('btn-flat')}>Профиль</Button>
                     </div>
                     <div className={cx('pull-right')}>
-                      <Button className={cx('btn-flat')}>Sign out</Button>
+                      <Button className={cx('btn-flat')}>Выйти</Button>
                     </div>
                   </MenuItem>
                 </Dropdown.Menu>
